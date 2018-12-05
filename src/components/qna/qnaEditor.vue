@@ -18,10 +18,11 @@
         </v-flex>
         <v-flex class="xs12 md4 text-xs-right">
           
-          <v-btn @click="writeqna" large :block="$vuetify.breakpoint.xsOnly" class="primary">글쓰기</v-btn>
+          <v-btn @click="writeqna" large :block="$vuetify.breakpoint.xsOnly" color="primary">글쓰기</v-btn>
         </v-flex>
 
     </v-layout>
+
   </v-container>
 </template>
 

@@ -8,11 +8,7 @@ import Projects from '@/components/Projects'
 import qnaHome from '@/components/qna/qnaHome'
 import qnaEditor from '@/components/qna/qnaEditor'
 import Gallery from '@/components/Gallery'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css' 
 
-
-Vue.use(Vuetify)
 Vue.use(Router)
 
 export default new Router({
@@ -30,7 +26,7 @@ export default new Router({
     },    
     {
       path: '/notice/:id',
-      name: 'Notice',
+      name: 'NoticeDetail',
       props: true,
       component: NoticeDetail
     },

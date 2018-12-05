@@ -14,7 +14,6 @@
           <td>{{ props.item.pid }}</td>
           <td>{{ props.item.created}}</td>
           <td>{{ props.item.title }}</td>
-  <td>      </td>                    
           <!-- <td>{{ props.item.clicks }}</td> -->
         </template>
                                       </router-link>
@@ -43,7 +42,7 @@
 </template>
 
 <script>
-import db from '@/firebase/init.js';
+import db from '../firebase/init.js';
 
 export default {
   created(){
@@ -62,6 +61,7 @@ export default {
     return {
       documents: [],
       search: '',
+      alert: false,
       pagination: {},
       selected: [],
       headers: [
