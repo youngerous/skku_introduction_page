@@ -44,8 +44,8 @@
                 <li class="mp-menu__item">
                     <router-link href="#" class="mp-menu__link" to="/gallery">
                         <span class="mp-menu__title">
-                            <span class="mp-menu__first-word" data-hover="겔러리">
-                                겔러리
+                            <span class="mp-menu__first-word" data-hover="갤러리">
+                                갤러리
                             </span>
                             <span class="mp-menu__second-word" data-hover="Gallery">
                                 Gallery
@@ -120,6 +120,7 @@ router-link {
   border-bottom: 3px solid #ccd7d7;
   font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
   font-size: 22px;
+  width: 100vw;
 }
 
 .mp-menu {
