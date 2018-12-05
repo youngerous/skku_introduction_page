@@ -33,7 +33,7 @@ export default {
 <style>
 .mp-video-container {
     width: 100%;
-    height: 900px;
+    height: 98vh;
     overflow: hidden;
     position: relative;
   }

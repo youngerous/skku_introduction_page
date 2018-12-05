@@ -1,23 +1,22 @@
 <template>
-  <div>
+  <v-container>
     <div class="header">
       <h1>아기사자 갤러리</h1>
       <h3 class="subtitle">아기(였던) 사자들의 사진을 봐주세요!</h3>
     </div>
 
-    <v-container fluid grid-list-xl class="selecter">
-      <v-layout wrap align-center>
-        <v-flex xs12 sm6 d-flex>
-          <v-select :items="items" label="기수"></v-select>
-        </v-flex>
-      </v-layout>
-    </v-container>
+    <v-layout wrap class="my-2">
+      <v-flex xs12 sm6 d-flex>
+        <v-select :items="items" label="기수"></v-select>
+      </v-flex>
+    </v-layout>
 
-    <hr>
+    <hr class="my-4">
+
     <div class="main">
       <GallerySection v-for="(occasion, i) in occasions" :occasion="occasion" :key="i"/>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>

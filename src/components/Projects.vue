@@ -59,13 +59,6 @@ export default {
           url:"https://plusmoa.herokuapp.com/",
           src: '3.jpg'
         },
-        {
-            name: '',
-            text:'',
-            creator: '',
-            url: "",
-            src: '1.png'
-        },
       ]
     }
   }

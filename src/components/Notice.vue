@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <v-container>
     <h2>공지사항</h2>
     <br>
     <br>
@@ -37,7 +37,7 @@
         <v-btn outline large color="teal" v-if="!alert" @click="alert = true">글쓰기</v-btn>
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
