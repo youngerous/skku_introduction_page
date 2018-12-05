@@ -32,7 +32,7 @@ export default new Router({
     },
     {
       path: '/notice/:id/edit',
-      name: 'Notice_Edit',
+      name: 'NoticeEdit',
       component: NoticeEdit
     },
     {

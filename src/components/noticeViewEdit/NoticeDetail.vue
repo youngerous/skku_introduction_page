@@ -13,11 +13,7 @@
         />
       </p>
     </div>
-    <!-- <div>
-      <h2>Notice Detail 페이지 for Notice ID: {{$route.params.id}}</h2>
-      <h2 class="notice-title">{{notice.title}}</h2>
-      <h4 class="notice-created">{{notice.created}}</h4>
-      <div class="notice-content">{{notice.content}}</div> -->
+    
     <v-card-actions class="nt-next-prev-list">
         <v-btn flat to="/notice">
             <v-icon right dark>chevron_left</v-icon>
@@ -36,14 +32,9 @@
     <v-btn to="./:id/edit" fab dark color="cyan">
       <v-icon dark>edit</v-icon>
     </v-btn>
-    <!-- <router-link to="../:id/edit">
-      <v-btn fab dark color="cyan">
-        <v-icon dark>edit</v-icon>
-      </v-btn>
-    </router-link>
-     -->
+    
     <v-btn fab dark color="red">
-      <v-icon dark @click="deleteNotice(notice.pid)">delete</v-icon>
+      <v-icon dark @click="deleteItem(props.item)">delete</v-icon>
     </v-btn>   
   </div>
   
@@ -136,7 +127,12 @@ export default {
         changePreviewStyle() {
             this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
         }
-    })
+    }),
+    
+    // deleteItem (item) {
+    //   const index = this.notices.indexOf(item)
+    //   confirm('공지사항을 정말 삭제하시겠습니까?') && this.notices.splice(index, 1)
+    // },
 };
 </script>
 

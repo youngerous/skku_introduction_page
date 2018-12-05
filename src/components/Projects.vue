@@ -15,9 +15,9 @@
           <p class="prj-url">{{project.url}}</p>
         </v-flex>
         <v-flex class="prj-imgcontainer" xs12 md5 ma-0>
-          <!-- <img class="prj-image" :src="require(`@/assets/prj-images/${project.src}`)" alt="이미지가 없다"> -->
+          <img class="prj-image" :src="require(`@/assets/prj-images/${project.src}`)" alt="이미지가 없다">
           <div>
-            
+
           </div>
         </v-flex>
       </v-layout>

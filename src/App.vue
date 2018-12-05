@@ -2,14 +2,15 @@
   <v-app id="app">
     <Navbar></Navbar>
     <transition transition
-        name="fade"
-        mode="out-in"
-        >
-    <v-content>
-      <v-container fluid class="pa-0">
-        <router-view/>
-      </v-container>
-    </v-content>
+      name="fade"
+      mode="out-in"
+    >
+      <v-content>
+        <v-container fluid class="pa-0">
+          <router-view/>
+        </v-container>
+      </v-content>
+
     </transition>
   </v-app>
 </template>
