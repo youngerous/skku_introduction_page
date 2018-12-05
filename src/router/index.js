@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Notice from '@/components/Notice'
 import Projects from '@/components/Projects'
-import QnA from '@/components/QnA'
+import qnaHome from '@/components/qna/qnaHome'
+import qnaEditor from '@/components/qna/qnaEditor'
 import Gallery from '@/components/Gallery'
 
 
@@ -24,8 +25,13 @@ export default new Router({
     },
     {
       path: '/qna',
-      name: 'QnA',
-      component: QnA
+      name: 'QnAHome',
+      component: qnaHome
+    },
+    {
+      path: '/qna/newqna',
+      name: 'QnANew',
+      component: qnaEditor
     },
     {
       path: '/projects',

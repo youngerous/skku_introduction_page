@@ -1,21 +1,8 @@
-# skku-intro-page
+# 성균관대학교 멋쟁이사자처럼 공식 홍보 페이지
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 팀별 prefix
+1. 메인 페이지: mp-
+2. 공지사항: nt-
+3. Q&A: qa-
+4. 갤러리: gr-
+5. 프로젝트: prj-
