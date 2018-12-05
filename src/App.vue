@@ -1,18 +1,13 @@
 <template>
-  <v-app>
+  <div id="app">
     <Navbar></Navbar>
     <transition transition
         name="fade"
         mode="out-in"
-        >
-    <v-content>
-      <v-container fluid>
-        <router-view/>
-
-      </v-container>
-    </v-content>
+      >
+    <router-view/>
     </transition>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -21,7 +16,7 @@ export default {
   name: 'app',
   components: {
     'Navbar': Navbar
-  } 
+  }
 }
 </script>
 

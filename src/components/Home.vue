@@ -10,7 +10,8 @@
             <div class="mp-title_container">
                 <h1 class="mp-likelionSkku">LikeLion X SKKU</h1>
                 <vue-typed-js :strings="['Hack Your Life', 'Code your Ideas with your hand', 'Make the Ideas yours']" :backSpeed="40" :loop="true" :showCursor="false" :autoInsertCss="true">
-                    <h2 class="mp-typing"></h2>
+                    <!-- h2 class명 변경하면 안됨 -->
+                    <h2 class="typing"></h2>
                 </vue-typed-js>
             </div>
         </div>
@@ -63,7 +64,7 @@ video {
     flex-wrap: wrap;
 }
 
-.mp-typing {
+.typing {
     font-size: 30px;
     font-weight: 100;
     color: white;
