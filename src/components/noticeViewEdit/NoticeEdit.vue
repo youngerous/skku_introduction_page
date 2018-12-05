@@ -1,25 +1,35 @@
 <template>
-  <div class="container">
-    <h1>Edit Page: __id</h1>
-    <editor
-    ref="tuiEditor"
-    v-model="editorText"
-    :options="editorOptions"
-    :html="editorHtml"
-    :mode="editorMode"
-    :previewStyle="editorPreviewStyle"
-    @load="onEditorLoad"
-    @focus="onEditorFocus"
-    @blur="onEditorBlur"
-    @change="onEditorChange"
-    @stateChange="onEditorStateChange"
-    />
-    
-  </div>
+     <v-container>
+    <v-layout row wrap justify-center align-center>
+      <v-flex xs12>
+        <v-text-field label="제목" placeholder="__id title" v-model="editorTitle"></v-text-field>
+      </v-flex>
+      <v-flex xs12>
+        <Editor v-model="editorContent" />
+      </v-flex>
+      <v-flex xs12 class="my-2">
+        <v-divider></v-divider>
+      </v-flex>
+    </v-layout>
+
+    <v-layout row wrap justify-end>
+        <v-flex class="xs12 md4 text-xs-right">
+          <v-btn @click="editPost" large :block="$vuetify.breakpoint.xsOnly" class="primary">수정하기</v-btn>
+          <v-btn @click="editPost" large :block="$vuetify.breakpoint.xsOnly" class="primary">이전페이지로</v-btn>
+
+        </v-flex>
+
+    </v-layout>
+  </v-container>
+            
 </template>
 
 <script>
-import {Editor, Viewer} from './index.js';
+import {Editor, Viewer} from './index.js'
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+ 
+Vue.use(Vuetify)
 
 const eventListenr = [
     'onEditorLoad',
@@ -53,7 +63,6 @@ export default {
                 'moveCursorToEnd',
                 'reset'
             ],
-            viewerText: '# TOAST UI Markdown Viewer + Vue\n This is Viewer.',
             editorText: 'This is initialValue.',
             editorOptions: {
                 hideModeSwitch: false,
@@ -102,8 +111,12 @@ export default {
         },
         changePreviewStyle() {
             this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
+        },
+        editPost() {
+            console.log(this.editorText)
         }
     })
+    
 };
 </script>
 
@@ -113,10 +126,10 @@ export default {
 @import 'https://uicdn.toast.com/tui-editor/latest/tui-editor.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css';
 
-.container {
+.nt-container {
   width: 960px;
 }
-.viewer {
-  background-color: lightpink
+.nt-editor {
+  background-color: white;
 }
 </style>

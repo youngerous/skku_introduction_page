@@ -1,22 +1,13 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <Navbar></Navbar>
     <transition transition
         name="fade"
         mode="out-in"
-<<<<<<< HEAD
       >
     <router-view/>
-=======
-        >
-    <v-content>
-      <v-container fluid class="pa-0">
-        <router-view/>
-      </v-container>
-    </v-content>
->>>>>>> 88ffe982d2ce045f66551541be678027ce44313d
     </transition>
-  </div>
+  </v-app>
 </template>
 
 <script>
