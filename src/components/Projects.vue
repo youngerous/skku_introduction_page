@@ -16,7 +16,7 @@
             <a class="prj-url" v-if="project.url" v-bind:href="project.url">
               {{project.url}}
             </a>
-            <div v-else style="{font-size: 100px}"> 서비스 종료 </div>
+            <div v-else> 서비스 종료 </div>
           </v-flex>
           <v-flex class="prj-imgcontainer" xs12 md5 ma-0>
             <img class="prj-image" :src="require(`@/assets/prj-images/${project.src}`)" alt="이미지가 없다" draggable="false">
@@ -96,7 +96,7 @@ export default {
           src: 'skkudent.png'
         },
         {
-          name: '마케팅 실헌 신청 서비스',
+          name: '마케팅 실험 신청 서비스',
           text: '교수님과 학생들이 수업에서 혹은 연구수단으로 활용할 수 있는 마케팅 실험 플랫폼입니다.',
           creator: '이동엽, 전태훈',
           url:"https://pool.skku.edu",
