@@ -56,23 +56,31 @@
 
 
 <script>
-import {Editor, Viewer} from './index.js';
-import db from '../../firebase/init.js';
+// import {Editor, Viewer} from './index.js';
+import db from '@/firebase/init.js';
 
-const eventListenr = [
-    'onEditorLoad',
-    'onEditorFocus',
-    'onEditorBlur',
-    'onEditorChange',
-    'onEditorStateChange'
-].reduce((methods, methodName) => {
-    methods[methodName] = function() {
-        // eslint-disable-next-line no-console
-        console.log(`[editor] ${methodName}`);
-    };
+import 'tui-editor/dist/tui-editor.css';
+import 'tui-editor/dist/tui-editor-contents.css';
+import 'highlight.js/styles/github.css';
+import 'codemirror/lib/codemirror.css';
 
-    return methods;
-}, {});
+import Editor from '@toast-ui/vue-editor/src/editor.vue';
+import Viewer from '@toast-ui/vue-editor/src/Viewer.vue';
+
+// const eventListenr = [
+//     'onEditorLoad',
+//     'onEditorFocus',
+//     'onEditorBlur',
+//     'onEditorChange',
+//     'onEditorStateChange'
+// ].reduce((methods, methodName) => {
+//     methods[methodName] = function() {
+//         // eslint-disable-next-line no-console
+//         console.log(`[editor] ${methodName}`);
+//     };
+
+//     return methods;
+// }, {});
 
 export default {
     props: {
@@ -105,65 +113,65 @@ export default {
         return {
             dialog: false,
             message: '',
-            methodNames: [
-                'focus',
-                'getValue',
-                'getHtml',
-                'getSelectedText',
-                'moveCursorToStart',
-                'moveCursorToEnd',
-                'reset'
-            ],
-            viewerText: '',
-            editorText: 'This is initialValue.',
-            editorOptions: {
-                hideModeSwitch: false,
-                toolbarItems: [
-                    'heading',
-                    'bold',
-                    'italic',
-                    'strike',
-                    'divider',
-                    'hr',
-                    'quote',
-                    'divider',
-                    'ul',
-                    'ol',
-                    'task',
-                    'indent',
-                    'outdent',
-                    'divider',
-                    'table',
-                    'image',
-                    'link',
-                    'divider',
-                    'code',
-                    'codeblock'
-                ]
-            },
-            editorHeight: '200px',
-            editorHtml: '',
-            editorMode: 'markdown',
-            editorVisible: true,
-            editorPreviewStyle: 'vertical'
+            // methodNames: [
+            //     'focus',
+            //     'getValue',
+            //     'getHtml',
+            //     'getSelectedText',
+            //     'moveCursorToStart',
+            //     'moveCursorToEnd',
+            //     'reset'
+            // ],
+            // viewerText: '',
+            // editorText: 'This is initialValue.',
+            // editorOptions: {
+            //     hideModeSwitch: false,
+            //     toolbarItems: [
+            //         'heading',
+            //         'bold',
+            //         'italic',
+            //         'strike',
+            //         'divider',
+            //         'hr',
+            //         'quote',
+            //         'divider',
+            //         'ul',
+            //         'ol',
+            //         'task',
+            //         'indent',
+            //         'outdent',
+            //         'divider',
+            //         'table',
+            //         'image',
+            //         'link',
+            //         'divider',
+            //         'code',
+            //         'codeblock'
+            //     ]
+            // },
+            // editorHeight: '200px',
+            // editorHtml: '',
+            // editorMode: 'markdown',
+            // editorVisible: true,
+            // editorPreviewStyle: 'vertical'
         };
     },
     methods: {
-        methodInvoke(methodName) {
-            this.message = this.$refs.tuiEditor.invoke(methodName);
-        },
-        changeText() {
-            this.editorText += 'hihi';
-        },
-        changeHtml() {
-            this.editorHtml = '<h1>Hi</h1>';
-        },
-        changeMode() {
-            this.editorMode = this.editorMode === 'wysiwyg' ? 'markdown' : 'wysiwyg';
-        },
-        changePreviewStyle() {
-            this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
-        },
+        // methodInvoke(methodName) {
+        //     this.message = this.$refs.tuiEditor.invoke(methodName);
+        // },
+        // changeText() {
+        //     this.editorText += 'hihi';
+        // },
+        // changeHtml() {
+        //     this.editorHtml = '<h1>Hi</h1>';
+        // },
+        // changeMode() {
+        //     this.editorMode = this.editorMode === 'wysiwyg' ? 'markdown' : 'wysiwyg';
+        // },
+        // changePreviewStyle() {
+        //     this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
+        // },
 
 
         checkPassword(){
@@ -192,11 +200,10 @@ export default {
 </script>
 
 <style scoped>
-@import 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.css';
+/* @import 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.css';
 @import 'https://uicdn.toast.com/tui-editor/latest/tui-editor-contents.css';
 @import 'https://uicdn.toast.com/tui-editor/latest/tui-editor.css';
-@import 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css';
-
+@import 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css'; */
 .nt-viewer {
   background-color: white;
 }

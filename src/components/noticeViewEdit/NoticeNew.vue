@@ -24,25 +24,34 @@
 </template>
 
 <script>
-import {Viewer, Editor} from './index.js'
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+// import {Viewer, Editor} from './index.js'
+// import Vue from 'vue'
+// import VueRouter from 'vue-router'
+
+import 'tui-editor/dist/tui-editor.css';
+import 'tui-editor/dist/tui-editor-contents.css';
+import 'highlight.js/styles/github.css';
+import 'codemirror/lib/codemirror.css';
+
+import Editor from '@toast-ui/vue-editor/src/editor.vue'
+import Viewer from '@toast-ui/vue-editor/src/Viewer.vue'
+
 import db from '../../firebase/init.js';
  
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
 
-const eventListenr = [
-    'onEditorLoad',
-    'onEditorFocus',
-    'onEditorBlur',
-    'onEditorChange',
-    'onEditorStateChange'
-].reduce((methods, methodName) => {
-    methods[methodName] = function() {
-        console.log(`[editor] ${methodName}`);
-    };
-    return methods;
-}, {});
+// const eventListenr = [
+//     'onEditorLoad',
+//     'onEditorFocus',
+//     'onEditorBlur',
+//     'onEditorChange',
+//     'onEditorStateChange'
+// ].reduce((methods, methodName) => {
+//     methods[methodName] = function() {
+//         console.log(`[editor] ${methodName}`);
+//     };
+//     return methods;
+// }, {});
 
 // const router = new VueRouter({
 //   routes: [
@@ -61,50 +70,50 @@ export default {
             editorTitle: '',
             editorContent: 'This is editorContent',
             message: '',
-            methodNames: [
-                'focus',
-                'getValue',
-                'getHtml',
-                'getSelectedText',
-                'moveCursorToStart',
-                'moveCursorToEnd',
-                'reset'
-            ],
-            editorOptions: {
-                hideModeSwitch: false,
-                toolbarItems: [
-                    'heading',
-                    'bold',
-                    'italic',
-                    'strike',
-                    'divider',
-                    'hr',
-                    'quote',
-                    'divider',
-                    'ul',
-                    'ol',
-                    'task',
-                    'indent',
-                    'outdent',
-                    'divider',
-                    'table',
-                    'image',
-                    'link',
-                    'divider',
-                    'code',
-                    'codeblock'
-                ]
-            },
-            editorHeight: '200px',
-            editorMode: 'wysiwyg',
-            editorVisible: true,
-            editorPreviewStyle: 'vertical'
+            // methodNames: [
+            //     'focus',
+            //     'getValue',
+            //     'getHtml',
+            //     'getSelectedText',
+            //     'moveCursorToStart',
+            //     'moveCursorToEnd',
+            //     'reset'
+            // ],
+            // editorOptions: {
+            //     hideModeSwitch: false,
+            //     toolbarItems: [
+            //         'heading',
+            //         'bold',
+            //         'italic',
+            //         'strike',
+            //         'divider',
+            //         'hr',
+            //         'quote',
+            //         'divider',
+            //         'ul',
+            //         'ol',
+            //         'task',
+            //         'indent',
+            //         'outdent',
+            //         'divider',
+            //         'table',
+            //         'image',
+            //         'link',
+            //         'divider',
+            //         'code',
+            //         'codeblock'
+            //     ]
+            // },
+            // editorHeight: '200px',
+            // editorMode: 'wysiwyg',
+            // editorVisible: true,
+            // editorPreviewStyle: 'vertical'
         };
     },
     methods: {
-        changePreviewStyle() {
-            this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
-        },
+        // changePreviewStyle() {
+        //     this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
+        // },
         editPost() {
             console.log(this.editorTitle)
             console.log(this.editorContent)

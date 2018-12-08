@@ -76,11 +76,6 @@
 
 <script>
   import db from '../firebase/init.js';
-  import VueRouter from 'vue-router'
-  
-  const router = new VueRouter({
-
-  })
 
   export default {
     created() {

@@ -76,6 +76,20 @@ export default {
           src: 'skkupledge.png'
         },
         {
+          name: 'Survey Gacha!',
+          text: '말로만 설문하면 기프티콘 준다고 하지 말고, 설문하고 실시간으로 확인하자! 공유하면 뽑기권 추가까지! <br>(개발중)',
+          creator: '김태우',
+          url:"https://surveygacha.firebaseapp.com/",
+          src: 'surveygacha.png'
+        },
+        {
+          name: 'Dotrait',
+          text: '조그만 기록이라도 나의 발자취를 남기고 포인트를 얻자. 그 포인트로 픽셀아트 도전까지! <br>(개발중)',
+          creator: '김태우',
+          url:"https://dottrait.firebaseapp.com/",
+          src: 'dotrait.png'
+        },
+        {
           name: '쁠모아',
           text: '이왕 먹을거 더 많이 먹자! 마트, 편의점 1+1, 2+1 행사를 한 눈에 볼 수 있도록 해주는 웹서비스<br>(데이터 수집 자동화 종료)',
           creator: '권우정, 송예균, 이진호, 이동건',

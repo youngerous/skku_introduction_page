@@ -24,26 +24,34 @@
 </template>
 
 <script>
-import {Viewer, Editor} from './index.js'
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-import VueRouter from 'vue-router'
- 
-Vue.use(Vuetify)
-Vue.use(VueRouter)
+import 'tui-editor/dist/tui-editor.css';
+import 'tui-editor/dist/tui-editor-contents.css';
+import 'highlight.js/styles/github.css';
+import 'codemirror/lib/codemirror.css';
 
-const eventListenr = [
-    'onEditorLoad',
-    'onEditorFocus',
-    'onEditorBlur',
-    'onEditorChange',
-    'onEditorStateChange'
-].reduce((methods, methodName) => {
-    methods[methodName] = function() {
-        console.log(`[editor] ${methodName}`);
-    };
-    return methods;
-}, {});
+import Editor from '@toast-ui/vue-editor/src/editor.vue'
+import Viewer from '@toast-ui/vue-editor/src/Viewer.vue'
+
+// import {Viewer, Editor} from './index.js'
+// import Vue from 'vue'
+// import Vuetify from 'vuetify'
+// import VueRouter from 'vue-router'
+ 
+// Vue.use(Vuetify)
+// Vue.use(VueRouter)
+
+// const eventListenr = [
+//     'onEditorLoad',
+//     'onEditorFocus',
+//     'onEditorBlur',
+//     'onEditorChange',
+//     'onEditorStateChange'
+// ].reduce((methods, methodName) => {
+//     methods[methodName] = function() {
+//         console.log(`[editor] ${methodName}`);
+//     };
+//     return methods;
+// }, {});
 
 // const router = new VueRouter({
 //   routes: [
@@ -63,50 +71,50 @@ export default {
             editorTitle: 'This is editorTitle',
             editorContent: 'This is editorContent',
             message: '',
-            methodNames: [
-                'focus',
-                'getValue',
-                'getHtml',
-                'getSelectedText',
-                'moveCursorToStart',
-                'moveCursorToEnd',
-                'reset'
-            ],
-            editorOptions: {
-                hideModeSwitch: false,
-                toolbarItems: [
-                    'heading',
-                    'bold',
-                    'italic',
-                    'strike',
-                    'divider',
-                    'hr',
-                    'quote',
-                    'divider',
-                    'ul',
-                    'ol',
-                    'task',
-                    'indent',
-                    'outdent',
-                    'divider',
-                    'table',
-                    'image',
-                    'link',
-                    'divider',
-                    'code',
-                    'codeblock'
-                ]
-            },
-            editorHeight: '200px',
-            editorMode: 'wysiwyg',
-            editorVisible: true,
-            editorPreviewStyle: 'vertical'
+            // methodNames: [
+            //     'focus',
+            //     'getValue',
+            //     'getHtml',
+            //     'getSelectedText',
+            //     'moveCursorToStart',
+            //     'moveCursorToEnd',
+            //     'reset'
+            // ],
+            // editorOptions: {
+            //     hideModeSwitch: false,
+            //     toolbarItems: [
+            //         'heading',
+            //         'bold',
+            //         'italic',
+            //         'strike',
+            //         'divider',
+            //         'hr',
+            //         'quote',
+            //         'divider',
+            //         'ul',
+            //         'ol',
+            //         'task',
+            //         'indent',
+            //         'outdent',
+            //         'divider',
+            //         'table',
+            //         'image',
+            //         'link',
+            //         'divider',
+            //         'code',
+            //         'codeblock'
+            //     ]
+            // },
+            // editorHeight: '200px',
+            // editorMode: 'wysiwyg',
+            // editorVisible: true,
+            // editorPreviewStyle: 'vertical'
         };
     },
     methods: {
-        changePreviewStyle() {
-            this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
-        },
+        // changePreviewStyle() {
+        //     this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
+        // },
         editPost() {
             console.log(this.editorTitle)
             console.log(this.editorContent)
@@ -119,10 +127,10 @@ export default {
 </script>
 
 <style>
-@import 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.css';
+/* @import 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.css';
 @import 'https://uicdn.toast.com/tui-editor/latest/tui-editor-contents.css';
 @import 'https://uicdn.toast.com/tui-editor/latest/tui-editor.css';
-@import 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css'; */
 
 .nt-container {
   width: 960px;

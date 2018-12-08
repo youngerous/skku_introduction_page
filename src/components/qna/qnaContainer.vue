@@ -99,7 +99,6 @@ export default {
         faq.id = doc.id
         this.faqs.push(faq)
         this.loading = false
-        console.log(faq)
       })
     })
   },

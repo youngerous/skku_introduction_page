@@ -9,45 +9,45 @@
     
     <!-- 게시글 -->
     <v-flex xs12>
-        <div class="qa-border">
-      <v-card class="pa-4" style="min-height: 100px;">
-        <h2 class="display-1">{{loaded_article.title}}</h2>
-        <p class="my-2 text-xs-right subheading">작성자 : {{loaded_article.writer}}</p>
-        <v-btn class="qa-btn-delete" flat outline right small @click.stop="dialog_article = !dialog_article"> 삭제 </v-btn>
-        <v-dialog
-            v-model="dialog_article"
-            max-width="290"
-          >
-            <v-card>
-              <v-card-title class="headline">비밀번호</v-card-title>
-                
-              <v-card-text>
-                <v-text-field label="비밀번호" type="password" v-model="pw_article" required></v-text-field>
-              </v-card-text>
+      <div class="qa-border">
+        <v-card class="pa-4" style="min-height: 100px;">
+          <h2 class="display-1">{{loaded_article.title}}</h2>
+          <p class="my-2 text-xs-right subheading">작성자 : {{loaded_article.writer}}</p>
+          <v-btn class="qa-btn-delete" flat outline right small @click.stop="dialog_article = !dialog_article"> 삭제 </v-btn>
+          <v-dialog
+              v-model="dialog_article"
+              max-width="290"
+            >
+              <v-card>
+                <v-card-title class="headline">비밀번호</v-card-title>
+                  
+                <v-card-text>
+                  <v-text-field label="비밀번호" type="password" v-model="pw_article" required></v-text-field>
+                </v-card-text>
 
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="green darken-1" flat="flat" @click="dialog_article = false">
-                  취소
-                </v-btn>
-                <v-btn color="green darken-1" flat="flat" @click="deleteArticle">
-                  확인
-                </v-btn>
-              </v-card-actions>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="green darken-1" flat="flat" @click="dialog_article = false">
+                    취소
+                  </v-btn>
+                  <v-btn color="green darken-1" flat="flat" @click="deleteArticle">
+                    확인
+                  </v-btn>
+                </v-card-actions>
 
-            </v-card>
-          </v-dialog>
-        <v-flex xs12>
-          <v-divider></v-divider>
-        </v-flex>
-        <v-flex class="xs12 text-xs-left pa-3">
-          <viewer
-            class="nt-viewer"
-            :value="loaded_article.content"
-            />
-        </v-flex>
-      </v-card>
-       </div> 
+              </v-card>
+            </v-dialog>
+          <v-flex xs12>
+            <v-divider></v-divider>
+          </v-flex>
+          <v-flex class="xs12 text-xs-left pa-3">
+            <viewer
+              class="nt-viewer"
+              :value="loaded_article.content"
+              />
+          </v-flex>
+        </v-card>
+      </div> 
     </v-flex>
 
     <!-- 답변 -->
@@ -55,7 +55,7 @@
       <div class="my-3" xs12 v-if="loaded_article.comments" v-for="(comment,index) in loaded_article.comments" :key="index">
         <v-card class="pa-4 qa-border-comment" style="min-height: 100px;">
           <p class="my-2 text-xs-right subheading">작성자 : {{comment.writer}}</p>
-          <v-btn class="qa-btn-delete" flat outline right small @click.stop="dialog_comment = !dialog_comment"> 삭제 </v-btn>
+          <v-btn class="qa-btn-delete" flat outline right small @click.stop="selectComment(comment)"> 삭제 </v-btn>
           <v-dialog
             v-model="dialog_comment"
             max-width="290"
@@ -81,7 +81,7 @@
                 <v-btn
                   color="green darken-1"
                   flat="flat"
-                  @click.stop="deleteContent(comment)"
+                  @click.stop="deleteComment"
                 >
                   확인
                 </v-btn>
@@ -169,12 +169,12 @@ export default {
   // },
   created () {
     if (!this.item) {
-      console.log('직접왔어')
+      // console.log('직접왔어')
       db.collection('faqs').doc(this.id).get()
       .then((doc) => {
-        console.log(doc.data())
+        // console.log(doc.data())
         this.loaded_article = doc.data()
-        console.log(this.loaded_article.comments)
+        // console.log(this.loaded_article.comments)
       })
     } else {
       this.loaded_article = this.item
@@ -194,7 +194,8 @@ export default {
       dialog_article: false,
       pw_article: null,
       pw_comment: null,
-      loaded_article: null
+      loaded_article: null,
+      selectedComment: null
     }
   },
   methods:{
@@ -235,19 +236,20 @@ export default {
         alert('작성자 이름과 비밀번호를 모두 입력해야 합니다.');
       }
     },
+    selectComment(comment){
+      this.selectedComment = comment
+      this.dialog_comment = true
+    },
     
-    deleteContent(comment){
+    deleteComment(){
       // 댓글 삭제
-      console.log('실행은 됨')
-      console.log(this.pw_comment);
-      console.log(comment.password)
-      console.log(comment)
-      if (this.pw_comment == comment.password) {
-        console.log('조건문 작동은 함')
+      // console.log('실행은 됨')
+      if (this.pw_comment == this.selectedComment.password) {
+        // console.log('조건문 작동은 함')
         this.loaded_article.comments = this.loaded_article.comments.filter(commentA => {
           // console.log("commentA : "+commentA.createdAt);
           // console.log("comment: "+comment.createdAt);
-          return commentA.createdAt != comment.createdAt
+          return commentA.createdAt != this.selectedComment.createdAt
         })
         db.collection('faqs').doc(this.id).update({
           comments: this.loaded_article.comments
