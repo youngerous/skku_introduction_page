@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mainpage">
         <div class="mp-main-section">
             <div class="mp-video-container">
                 <video autoplay muted loop>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="mp-main">
+        <!-- <div class="mp-main">
             <div class="mp-what">
                 <h1 class="mp-what-title">What We Do</h1>
                 <h1 class="mp-what-title2">뭐하는 동아리인가요?</h1>
@@ -28,6 +28,7 @@
                     자체 개발된 온라인 강의 플랫폼 '클래스라이언' 을 통해 강의를 듣고 과제를 수행합니다. 다양한 오프라인 활동과 병행하여 뜻을 같이하는 동료를 찾고 자신이 만들고자 하는 
                     서비스를 직접 프로그래밍 하도록 돕습니다.
                 </h2>
+                <img id="session" class="animated fadeIn delay-1s" src="@/assets/session.jpg">
             </div>
             <div class="mp-history">
                 
@@ -39,7 +40,7 @@
             <div class="mp-end">
                 <h1 class="mp-ending">여러분들의 멋진 도전을 기다립니다!</h1>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -118,33 +119,51 @@ video {
 }
 
 .mp-what {
+    display: flex;
+    flex: 1 100%;
+    flex-wrap: wrap;
+    flex-flow: column-wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
     width: 100vw;
     height: 101vh;
+    background-size: 100%;
 }
 
 .mp-what-title {
-    position: absolute;
+    order: 1;
     color: #0c8040;
-    margin-left: 30px;
     top: 40%;
     font-size: 9vh;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .mp-what-title2 {
+    order: 2;
     color: #0c8040;
-    font-size: 6vh;
-    font-weight: 100;
-    margin-left: 30px;
-    top: 50%;
+    font-size: 4vh;
+    font-weight: 300;
+    top: 44%;
 }
 
 .mp-what-info {
+    order: 3;
     color: black;
     font-weight: 100;
     font-size: 3vh;
+    top: 47%;
+    width: 50%;
 }
+
+#session {
+    order: 4;
+    width: 40%;
+    top: 40%;
+}
+
 .mp-history {
     width: 100vw;
     height: 100vh;

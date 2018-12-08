@@ -46,7 +46,7 @@
                     <router-link class="mp-menu__link" to="/gallery">
                         <span class="mp-menu__title">
                             <span class="mp-menu__first-word" data-hover="갤러리">
-                                갤러리
+                                겔러리
                             </span>
                             <span class="mp-menu__second-word" data-hover="Gallery">
                                 Gallery
