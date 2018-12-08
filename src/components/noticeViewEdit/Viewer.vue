@@ -3,7 +3,6 @@
 </template>
 <script>
 import Viewer from 'tui-editor/dist/tui-editor-Viewer';
-
 import editorEvents from '../../plugins/editorEvents';
 
 export default {

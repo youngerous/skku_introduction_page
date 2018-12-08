@@ -46,4 +46,8 @@ html { overflow-y: auto }
 .fade-leave-active {
   opacity: 0
 }
+
+Footer{
+  /* position: fixed; */
+}
 </style>

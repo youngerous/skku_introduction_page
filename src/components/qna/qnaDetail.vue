@@ -16,14 +16,18 @@
           <v-divider></v-divider>
         </v-flex>
         <v-flex class="xs12 text-xs-left pa-3">
-          <p class="qa-idcontent subheading">{{item.content}}</p>
+          
+          <viewer
+            class="nt-viewer"
+            :value="item.content"
+            />
 
         </v-flex>
       </v-card>
        </div> 
     </v-flex>
 
-    <v-flex class="my-3" xs12 v-if="item.comments" v-for="comment in item.comments" >
+    <v-flex class="my-3" xs12 v-if="item.comments" v-for="(comment,index) in item.comments" :key="index" >
       <div class="qa-border-comment">
         <v-card class="pa-4" style="min-height: 100px;">
           <p class="my-2 text-xs-right subheading">작성자 : {{comment.writer}}</p>
@@ -64,6 +68,10 @@ import 'tui-editor/dist/tui-editor.css';
 import 'tui-editor/dist/tui-editor-contents.css';
 import 'codemirror/lib/codemirror.css';
 import Editor from '@toast-ui/vue-editor/src/editor.vue'
+
+import {Viewer} from '@/components/noticeViewEdit/index.js';
+
+
 import db from '@/firebase/init.js'
 
 export default {
@@ -76,7 +84,8 @@ export default {
 
   },
   components:{
-    Editor
+    Editor,
+    Viewer
   },
   computed: {
     // loadedData () {
@@ -103,6 +112,9 @@ export default {
       })
     }
     console.log(this.id)
+  },
+  mounted () {
+
   },
   data () {
     return {
@@ -135,7 +147,7 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
 .qa-border{
   border-left: 2px solid rgb(77, 126, 77);  
   border-right: 2.5px solid rgb(77, 126, 77); 
@@ -155,5 +167,12 @@ export default {
   
 }
 
+.theme--light.v-card{
+  background-color: none;
+}
+
+.nt-viewer {
+  background-color: white;
+}
 </style>
 

@@ -39,6 +39,8 @@ import 'tui-editor/dist/tui-editor.css';
 import 'tui-editor/dist/tui-editor-contents.css';
 import 'codemirror/lib/codemirror.css';
 import Editor from '@toast-ui/vue-editor/src/editor.vue'
+
+
 import db from '@/firebase/init.js'
 
 export default {
