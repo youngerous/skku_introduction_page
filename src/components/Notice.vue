@@ -57,7 +57,7 @@
             <v-layout wrap>
                             
               <v-flex xs12  >
-                <v-text-field label="Password*" type="password" required  id="password" name="password" minlength="3"></v-text-field>
+                <v-text-field label="Password*" type="password" required  id="password" name="password" minlength="3" color="#0c8040"></v-text-field>
               </v-flex>                             
               
             </v-layout>
@@ -66,8 +66,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="checkPassword"  >제출</v-btn>
-          <v-btn color="blue darken-1" flat @click="dialog = false"  >취소</v-btn>
+          <v-btn color="#0c8040" flat @click="checkPassword"  >제출</v-btn>
+          <v-btn color="#0c8040" flat @click="dialog = false"  >취소</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
