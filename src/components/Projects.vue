@@ -1,8 +1,9 @@
 <template>
   <v-container>
+    <link rel="stylesheet" href="animate.min.css">
     <v-layout>
       <v-flex class="prj-hook" xs12 text-xs-center ma-5 pa-2 display-3 font-weight-light >
-        <mark class="prj-highlight">성대 사자  </mark>들이 만든 <br>
+        <mark class="prj-highlight animated infinite bounce delay-2s">성대 사자</mark>들이 만든 <br>
         여러가지 서비스들을 소개합니다
       </v-flex>
     </v-layout>
@@ -16,7 +17,7 @@
             <a class="prj-url" v-if="project.url" v-bind:href="project.url">
               {{project.url}}
             </a>
-            <div v-else> 서비스 종료 </div>
+            <div v-else:class="{fontSize: 100 + 'px'}"> 서비스 종료 </div>
           </v-flex>
           <v-flex class="prj-imgcontainer" xs12 md5 ma-0>
             <img class="prj-image" :src="require(`@/assets/prj-images/${project.src}`)" alt="이미지가 없다" draggable="false">
@@ -50,12 +51,13 @@ export default {
   //   });
   // },
 
+
   data(){
     return{
       projects:[
         {
           name: '스꾸터',
-          text: '이제 우리학교에도 공식 커뮤니티 있다! <br>성대생의 성대생을 위한 생대생에 의한 커뮤니티!',
+          text: '이제 우리학교에도 공식 커뮤니티 있다! <br>성대생의 성대생을 위한 성대생에 의한 커뮤니티!',
           creator: '유장홍, 전태훈',
           url:"https://skkuter.com",
          src: 'skkuter.png'
@@ -111,7 +113,7 @@ export default {
         },
         {
           name: '그 외의 수많은 프로젝트들..',
-          text: '우리 성대 사자들은 이곳에 다 소개하기엔 너무 많을 정도로 항상 새로운 아이디어와 개발열의로 가득합니다. 이제 당신의 아이디어를 우리와 실현시켜봐요!',
+          text: '우리 성대 사자들은 이곳에 다 소개하기엔 너무 많을 정도로 항상 새로운 아이디어와 개발열의로 가득합니다.<br> 이제 당신의 아이디어를 우리와 실현시켜봐요!',
           creator: '우리 그리고 여러분',
           url: 'https://www.facebook.com/likelionskku/?fref=ts',
           src: 'else2.png'
@@ -125,7 +127,7 @@ export default {
 <style>
   p,pre { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
   [data-scroll] {
-    transition: all 0.5s;
+    transition: all 0.7s;
   }
   [data-scroll="in"] {
     opacity: 1;
@@ -156,6 +158,7 @@ export default {
     background: white;
     box-shadow: 6px 10px #0c8040;
     border: 0.5px solid #0c8040;
+    line-height: 1.5em;
   }
   .prj-projects{
     background-color: white;
@@ -165,7 +168,7 @@ export default {
   }
   .prj-image{
     max-width: 100%;
-    max-height: 100%;
+    /* max-height: 100%; */
     
   }
   .prj-imgcontainer{
@@ -186,7 +189,7 @@ export default {
       color: #0c8040;
       background-color: white;
       font-weight: bold;
-      font-style: italic;
+      /* font-style: italic; */
   }
 
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
