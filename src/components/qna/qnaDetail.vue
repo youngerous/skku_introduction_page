@@ -154,6 +154,7 @@ export default {
 </script>
 
 <style scoped>
+@import url(//fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean);
 .qa-border{
   border-left: 2px solid rgb(77, 126, 77);  
   border-right: 2.5px solid rgb(77, 126, 77); 

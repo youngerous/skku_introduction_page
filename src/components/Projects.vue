@@ -57,7 +57,7 @@ export default {
           name: '스꾸터',
           text: '이제 우리학교에도 공식 커뮤니티 있다! 성대생의 성대생을 위한 생대생에 의한 커뮤니티!',
           creator: '유장홍, 전태훈',
-          url:"https://skkuter.com",
+          url:"https://skkute 성com",
          src: 'skkuter.png'
         },
         {

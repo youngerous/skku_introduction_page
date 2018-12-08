@@ -2,7 +2,7 @@
   <v-container>
     <v-layout wrap>
       <v-flex class="ma-3 text-xs-center" xs12>
-         <h2 class="notice-title">Q & A</h2> 
+         <h2 class="notice-title" style=" font-family: 'Do Hyeon', sans-serif;">Q & A</h2> 
       </v-flex>
     </v-layout>
     <v-layout justify-space-between>
@@ -131,6 +131,7 @@ export default {
 </script>
 
 <style scoped>
+@import url(//fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean);
 .notice-title {
   display: inline-block;
   border-bottom: 2px solid #0c8040;
