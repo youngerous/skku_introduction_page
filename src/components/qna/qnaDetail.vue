@@ -35,8 +35,11 @@
             <v-divider></v-divider>
           </v-flex>
           <v-flex class="xs12 text-xs-left pa-3">
-            <p class="qa-idcontent subheading">{{comment.content}}</p>
-
+            <!-- <p class="qa-idcontent subheading">{{comment.content}}</p> -->
+            <viewer
+            class="nt-viewer"
+            :value="comment.content"
+            />
           </v-flex>
         </v-card>
       </div> 
@@ -48,10 +51,10 @@
         <Editor v-model="commentContent" />
         <v-layout row wrap justify-end class="mt-4">
           <v-flex xs12 md4 class="pr-3 text-xs-right">
-            <v-text-field color="#0c8040" v-model="writer" outline hint="실명/익명" persistent-hint label="작성자"></v-text-field>
+            <v-text-field :rules="[() => !!name || 'This field is required']" color="#0c8040" v-model="writer" outline hint="실명/익명" persistent-hint label="작성자"></v-text-field>
           </v-flex>
           <v-flex xs12 md4 class="pr-3  text-xs-right">
-            <v-text-field color="#0c8040" v-model="password" outline hint="수정/삭제시 필요" persistent-hint label="비밀번호"></v-text-field>
+            <v-text-field :rules="[() => !!name || 'This field is required']" color="#0c8040" v-model="password" outline hint="수정/삭제시 필요" persistent-hint label="비밀번호"></v-text-field>
           </v-flex>
           <v-flex xs12 md4 class="text-xs-right">
             <v-btn large color="#0c8040" dark @click="addComment">답변 올리기</v-btn>
@@ -167,9 +170,6 @@ export default {
   
 }
 
-.theme--light.v-card{
-  background-color: none;
-}
 
 .nt-viewer {
   background-color: white;

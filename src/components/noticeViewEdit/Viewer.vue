@@ -1,9 +1,9 @@
 <template>
-    <div ref="tuiEditorViewer"></div>
+    <div ref="tuiEditorViewer" class="subheading viewer1"></div>
 </template>
 <script>
 import Viewer from 'tui-editor/dist/tui-editor-Viewer';
-import editorEvents from '../../plugins/editorEvents';
+import editorEvents from '@/plugins/editorEvents';
 
 export default {
     name: 'TuiEditorViewer',
@@ -52,3 +52,9 @@ export default {
     }
 };
 </script>
+
+<style>
+.viewer {
+    background: white;
+}
+</style>
