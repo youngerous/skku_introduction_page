@@ -2,7 +2,7 @@
      <v-container>
     <v-layout row wrap justify-center align-center>
       <v-flex xs12>
-        <v-text-field label="제목" placeholder="제목을 입력해주세요" v-model="editorTitle"></v-text-field>
+        <v-text-field label="제목" placeholder="제목을 입력해주세요" v-model="editorTitle" color="#0c8040"></v-text-field>
       </v-flex>
       <v-flex xs12>
         <Editor v-model="editorContent" />
