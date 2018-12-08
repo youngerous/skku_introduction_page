@@ -10,13 +10,13 @@
     <v-flex xs12>
         <div class="qa-border">
       <v-card class="pa-4" style="min-height: 500px;">
-        <h2 class="display-1">{{id.title}}</h2>
-        <p class="my-2 text-xs-right subheading">작성자 : {{id.writer}}</p>
+        <h2 class="display-1">{{loadedData.title}}</h2>
+        <p class="my-2 text-xs-right subheading">작성자 : {{loadedData.writer}}</p>
         <v-flex xs12>
           <v-divider></v-divider>
         </v-flex>
         <v-flex class="xs12 text-xs-left pa-3">
-          <p class="qa-idcontent subheading">{{id.content}}</p>
+          <p class="qa-idcontent subheading">{{loadedData.content}}</p>
 
         </v-flex>
       </v-card>
@@ -52,16 +52,47 @@ import Editor from '@toast-ui/vue-editor/src/editor.vue'
 import db from '@/firebase/init.js'
 
 export default {
-  props: ['id'],
+  props: {
+    id: String,
+    item: {
+      type: Object,
+      default: null
+    }
+  },
   components:{
     Editor
   },
-  created () {
-    console.log(id)
+  computed: {
+    loadedData () {
+      if (this.item) {
+        return this.item
+      } else {
+        console.log('직접왔어')
+        return db.collection('faqs').doc(this.id).get()
+        .then((doc) => {
+          console.log(doc.data())
+
+          return doc.data()
+        })
+      }
+    }
   },
+  // created () {
+  //   if (!this.item) {
+  //     console.log('직접왔어')
+  //     db.collection('faqs').doc(this.id).get()
+  //     .then((doc) => {
+  //       console.log(doc.data())
+  //       this.item = doc.data()
+  //     })
+  //   }
+  //   console.log(this.id)
+  // },
   data () {
     return {
-      commentContent: ''
+      commentContent: '',
+      password: null,
+      writer: null,
     }
   },
   methods:{

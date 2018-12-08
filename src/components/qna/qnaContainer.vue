@@ -110,7 +110,7 @@ export default {
       db.collection('faqs').doc(item.id).update({
         views: item.views
       })
-      this.$router.push({name: 'QnADetail', params: {id:item}})
+      this.$router.push({name: 'QnADetail', params: {id:item.id, item: item}})
     }
     // getDataFromApi() {
     //   this.loading = true;
