@@ -1,29 +1,29 @@
 <template>
   <v-container>
     <v-layout>
-      <v-flex class="prj-hook" xs12 text-xs-center ma-5 pa-2 display-3 font-weight-light >
-        <mark class="prj-highlight">성대 사자  </mark>들이 만든 <br>
+      <v-flex class="prj-hook animated bounceInLeft" xs12 text-xs-center ma-5 pa-2 display-3 font-weight-light >
+        <mark class="prj-highlight">성대 사자</mark>들이 만든 <br>
         여러가지 서비스들을 소개합니다
       </v-flex>
     </v-layout>
     <v-layout v-for="(project,index) in projects" ma-5 pa-1 :key="index">
       <div data-scroll>
         <v-layout wrap text-xs-center class="prj-projects" >
+
           <v-flex class="prj-infos" xs12 md7 pa-4 text-xs-left>
             <p class="prj-name">{{project.name}}</p>
             <p class="prj-text" v-html="project.text"></p>
             <p class="prj-creator">만든이: {{project.creator}}</p>
             <a class="prj-url" v-if="project.url" v-bind:href="project.url">
               {{project.url}}
-            </a>
-            <div v-else> 서비스 종료 </div>
+            </a> 
+            <div class="else-font" v-else> 서비스 종료 </div>
           </v-flex>
+
           <v-flex class="prj-imgcontainer" xs12 md5 ma-0>
             <img class="prj-image" :src="require(`@/assets/prj-images/${project.src}`)" alt="이미지가 없다" draggable="false">
-            <div>
-          
-            </div>
           </v-flex>
+
         </v-layout>
       </div>
       
@@ -50,14 +50,15 @@ export default {
   //   });
   // },
 
+
   data(){
     return{
       projects:[
         {
           name: '스꾸터',
-          text: '이제 우리학교에도 공식 커뮤니티 있다! <br>성대생의 성대생을 위한 생대생에 의한 커뮤니티!',
+          text: '이제 우리학교에도 공식 커뮤니티 있다! <br>성대생의 성대생을 위한 성대생에 의한 커뮤니티!',
           creator: '유장홍, 전태훈',
-          url:"https://skkuter.com",
+          url:"https://skkute 성com",
          src: 'skkuter.png'
         },
         {
@@ -89,6 +90,13 @@ export default {
           src: 'skkool.png'
         },
         {
+          name: 'BATE!',
+          text: 'SNS에서 댓글로 싸우기는 지쳤다!<br> 제대로된 토론 플랫폼에서 붙자!<br> 간편하게 토론방 링크 생성하고 보내버리면 끝!',
+          creator: '김탁영, 강동헌, 김주한, 손은호, 정광현',
+          url:"https://goo.gl/Wy7kVy",
+          src: 'bate.png'
+        },        
+        {
           name: 'YOU 학생',
           text: '성균관대 내 외국인들을 위한 커뮤니티.<br>(운영시간, 학교 공지사항, 같은나라 학생들의 모임 등을 제공) <br>P.S-코드파일만 있음.',
           creator: '김준엽, 허용회, 김경헌, 최재필',
@@ -111,7 +119,7 @@ export default {
         },
         {
           name: '그 외의 수많은 프로젝트들..',
-          text: '우리 성대 사자들은 이곳에 다 소개하기엔 너무 많을 정도로 항상 새로운 아이디어와 개발열의로 가득합니다. 이제 당신의 아이디어를 우리와 실현시켜봐요!',
+          text: '우리 성대 사자들은 이곳에 다 소개하기엔 너무 많을 정도로 항상 새로운 아이디어와 개발열의로 가득합니다.<br> 이제 당신의 아이디어를 우리와 실현시켜봐요!',
           creator: '우리 그리고 여러분',
           url: 'https://www.facebook.com/likelionskku/?fref=ts',
           src: 'else2.png'
@@ -125,7 +133,7 @@ export default {
 <style>
   p,pre { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
   [data-scroll] {
-    transition: all 0.5s;
+    transition: all 0.7s;
   }
   [data-scroll="in"] {
     opacity: 1;
@@ -145,17 +153,19 @@ export default {
     font-size: 18px;
     font-weight: thin;
   }
-  .prj-creator{
-    font-size: 15px;
-    font-weight: thin;
-  }
-  .prj-url{
+  /* .prj-creato
+  } */
+prj-url{
     margin-bottom: 0px;
   }
   .prj-hook{
     background: white;
     box-shadow: 6px 10px #0c8040;
     border: 0.5px solid #0c8040;
+    animation-delay: 0.5s;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    
   }
   .prj-projects{
     background-color: white;
@@ -183,10 +193,15 @@ export default {
     text-decoration: none;
   }
   mark.prj-highlight{
-      color: #0c8040;
-      background-color: white;
-      font-weight: bold;
-      font-style: italic;
+    color: #0c8040;
+    background-color: white;
+    font-weight: bold;
+ 
+      
+      /* font-style: italic; */
+  }
+  .else-font{
+    font-size: 25px;    
   }
 
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);

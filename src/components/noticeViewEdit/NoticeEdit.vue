@@ -53,6 +53,7 @@ const eventListenr = [
 // })
 
 export default {
+    props: ['page'],
     components: {
         Editor,
         Viewer

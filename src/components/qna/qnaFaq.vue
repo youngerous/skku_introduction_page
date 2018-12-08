@@ -1,6 +1,6 @@
 <template>
 <div class="text-xs-center">
-  <h2 class="my-3 qa-faq-title">자주 묻는 질문</h2>
+  <h2 class="my-3 qa-faq-title" style=" font-size: 30px; font-family: 'Do Hyeon', sans-serif;">자주 묻는 질문</h2>
   <v-expansion-panel popout expand>
       <v-expansion-panel-content v-for="(item, index) in items" :key="index">
         <div slot="header" class="subheading">{{item.title}}</div>
@@ -61,10 +61,8 @@
 </script>
 
 <style>
- /* .maintitle{
-  text-align: left;
-  margin-left: 20px;
-} */
+@import url(//fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean);
+
 .fqBorder{
   border: 1px solid rgb(200, 209, 200);
   width: 800px;

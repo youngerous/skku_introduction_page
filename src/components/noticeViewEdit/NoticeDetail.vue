@@ -13,28 +13,17 @@
         />
       </p>
     </div>
-    
-    <!-- <v-card-actions class="nt-next-prev-list">
-        <v-btn flat  @click.stop="prevList()" large outline color="teal" dark>
-            <v-icon right dark>chevron_left</v-icon>
-            Prev</v-btn>
-        <v-spacer></v-spacer>
-        <v-btn flat @click.stop="nextList()"  large outline color="teal" dark>
-            Next<v-icon right dark>chevron_right</v-icon>
-        </v-btn>
-    </v-card-actions> -->
-  </div>
+ </div>
 
   <div class="text-xs-right">
     <v-btn fab dark color="teal" to="/notice">
       <v-icon dark class="backBtn">list</v-icon>
     </v-btn>
-    <!-- <v-btn to="./:id/edit" fab dark color="cyan">
-        <v-icon dark>edit</v-icon>
-    </v-btn> -->
-    <!-- <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-btn to="./:id/edit" fab dark color="cyan">
-            <v-icon dark>edit</v-icon>
+    
+                
+    <v-dialog v-model="dialog" persistent max-width="600px">
+        <v-btn slot="activator" fab dark color="red">
+            <v-icon dark>delete</v-icon>
         </v-btn>
         <v-card>
             <v-card-title>
@@ -43,8 +32,8 @@
             <v-card-text>
                 <v-container grid-list-md>
                     <v-layout wrap>    
-                        <v-flex xs12 >
-                            <v-text-field label="Password*" type="password" required  id="password" name="password" minlength="3"></v-text-field>
+                        <v-flex xs12>
+                            <v-text-field label="Password*" type="password" required  id="password" name="password" minlength="3" color="#0c8040"></v-text-field>
                         </v-flex>                             
                     </v-layout>
                 </v-container>
@@ -52,15 +41,14 @@
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" flat @click="checkPassword"  >제출</v-btn>
-                <v-btn color="blue darken-1" flat @click="dialog = false"  >취소</v-btn>
+                <v-btn color="#0c8040" flat @click="checkPassword"  >제출</v-btn>
+                <v-btn color="#0c8040" flat @click="dialog = false"  >취소</v-btn>
             </v-card-actions>
         </v-card>
-    </v-dialog> -->
+        
+    </v-dialog>
 
-    <!-- <v-btn fab dark color="red">
-      <v-icon dark @click.stop="deleteNotice(page.id)">delete</v-icon>
-    </v-btn>    -->
+    
   </div>
   
 </v-container>  
@@ -87,13 +75,31 @@ const eventListenr = [
 }, {});
 
 export default {
-    props: ['page'],
+    props: {
+        id: String,
+        page: {
+            type: Object,
+            default: null
+        },
+
+    },
     components: {
         Editor,
         Viewer
     },
     created() {
-        viewerText = page.content
+        if(!this.page){
+            db.collection('notices').where('pid', '==', (this.id*1)).get()
+                .then((snap) => {
+                    snap.forEach((doc) => {
+                        console.log(doc.data())
+                        this.page = doc.data()
+                        this.page.id = doc.id
+                        this.page.created = new Date(this.page.created.seconds*1000).toLocaleDateString()
+                    })
+                }
+            )
+        }
     },
     data() {
         return {
@@ -158,29 +164,25 @@ export default {
         changePreviewStyle() {
             this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
         },
-        deleteNotice(id) {
-            db.collection('notices').doc(id).delete()
+
+
+        checkPassword(){
+            var pw = document.getElementById("password").value;
+            var pwck = 12345
+            if (pw != pwck) {
+                alert('죄송합니다. 권한이 없습니다');
+            } else {
+                 db.collection('notices').doc(this.page.id).delete()
                 .then(() => {
                     // this.notices = this.notices.filter((page) => {
                     // return page.id != id
                     // })
                     this.$router.push({path: '/notice'});
                 })
-        },
-        // nextList(){
-        // },
-        // prevList(){
-        // },
-
-        // checkPassword(){
-        //     var pw = document.getElementById("password").value;
-        //     var pwck = 12345
-        //     if (pw != pwck) {
-        //         alert('죄송합니다. 권한이 없습니다');
-            
-        //     } else {
-        //         this.$router.push('notice/:id/edit')
-        // }}
+                .catch((err) => {
+                    console.log(err)
+                })
+        }}
     }
 
     

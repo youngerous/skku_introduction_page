@@ -1,10 +1,8 @@
 <template>
   <v-container>
     <div class="text-xs-center">
-      <h2 class="my-3 ntc-title">공지사항</h2>
+      <h2 class="my-3 ntc-title" style="  font-size: 30px; font-family: 'Do Hyeon', sans-serif;" >공지사항</h2>
     </div>
-    <br>
-    <br>
     <br>
     <!-- 데이터테이블이랑 페이지네이션 결합 -->
     <div>
@@ -12,6 +10,7 @@
           <template slot="items" slot-scope="props">
             <tr @click="
             updateViews(props.item);
+            props.item.pid += ''
             $router.push({name: 'NoticeDetail', params: {id : props.item.pid, page: props.item}});">
               <td class="pid">{{ props.item.pid }}</td>
               <td class="created">{{ props.item.created}}</td>
@@ -21,12 +20,6 @@
           </template>
       </v-data-table>
     </div>
-    <div class="text-xs-center pt-2">
-      <v-pagination v-model="page" :length="3" :total-visible="5" circle>
-          <!-- 버튼 모양 네모난 게 더 낫다면 circle은 지우겠음 -->
-      </v-pagination>
-    </div>
-
    
  <!-- 글쓰기 팝업 다시 만들어보는중 -->
  
@@ -95,7 +88,7 @@
         .then(snapshot => {
           snapshot.forEach(doc => {
             let page = doc.data();
-            page.id = doc.id
+            page.id = doc.id;
             page.created = new Date(page.created.seconds*1000).toLocaleDateString()
             this.notices.push(page);
           });
@@ -103,7 +96,7 @@
     },
     data() {
       return {
-        
+        page: 1,
         dialog: false,
         notices: [],
         search: '',
@@ -152,12 +145,11 @@
         var pw = document.getElementById("password").value;
         var pwck = 12345
         if (pw != pwck) {
-            alert('죄송합니다. 권한이 없습니다');
-            // return false;
-            
-            } else {
-              this.$router.push('notice/noticenew')
-            }
+          alert('죄송합니다. 권한이 없습니다');
+          // return false;
+        } else {
+          this.$router.push('notice/noticenew')
+        }
                                 
     }
 
@@ -172,6 +164,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url(//fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean);
 .ntc-title{
   border-bottom: 2px solid #0c8040;
   display: inline-block;
