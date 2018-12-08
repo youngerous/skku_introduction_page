@@ -1,9 +1,8 @@
 <template>
   <v-container>
-    <link rel="stylesheet" href="animate.min.css">
     <v-layout>
-      <v-flex class="prj-hook" xs12 text-xs-center ma-5 pa-2 display-3 font-weight-light >
-        <mark class="prj-highlight animated infinite bounce delay-2s">성대 사자</mark>들이 만든 <br>
+      <v-flex class="prj-hook animated bounceInLeft" xs12 text-xs-center ma-5 pa-2 display-3 font-weight-light >
+        <mark class="prj-highlight">성대 사자</mark>들이 만든 <br>
         여러가지 서비스들을 소개합니다
       </v-flex>
     </v-layout>
@@ -16,8 +15,8 @@
             <p class="prj-creator">만든이: {{project.creator}}</p>
             <a class="prj-url" v-if="project.url" v-bind:href="project.url">
               {{project.url}}
-            </a>
-            <div v-else:class="{fontSize: 100 + 'px'}"> 서비스 종료 </div>
+            </a> 
+            <div class="else-font" v-else> 서비스 종료 </div>
           </v-flex>
           <v-flex class="prj-imgcontainer" xs12 md5 ma-0>
             <img class="prj-image" :src="require(`@/assets/prj-images/${project.src}`)" alt="이미지가 없다" draggable="false">
@@ -91,6 +90,13 @@ export default {
           src: 'skkool.png'
         },
         {
+          name: 'BATE!',
+          text: 'SNS에서 댓글로 싸우기는 지쳤다!<br> 제대로된 토론 플랫폼에서 붙자!<br> 간편하게 토론방 링크 생성하고 보내버리면 끝!',
+          creator: '김탁영, 강동헌, 김주한, 손은호, 정광현',
+          url:"https://goo.gl/Wy7kVy",
+          src: 'bate.png'
+        },        
+        {
           name: 'YOU 학생',
           text: '성균관대 내 외국인들을 위한 커뮤니티.<br>(운영시간, 학교 공지사항, 같은나라 학생들의 모임 등을 제공) <br>P.S-코드파일만 있음.',
           creator: '김준엽, 허용회, 김경헌, 최재필',
@@ -158,7 +164,10 @@ export default {
     background: white;
     box-shadow: 6px 10px #0c8040;
     border: 0.5px solid #0c8040;
-    line-height: 1.5em;
+    animation-delay: 0.5s;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    
   }
   .prj-projects{
     background-color: white;
@@ -186,10 +195,15 @@ export default {
     text-decoration: none;
   }
   mark.prj-highlight{
-      color: #0c8040;
-      background-color: white;
-      font-weight: bold;
+    color: #0c8040;
+    background-color: white;
+    font-weight: bold;
+ 
+      
       /* font-style: italic; */
+  }
+  .else-font{
+    font-size: 25px;    
   }
 
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
