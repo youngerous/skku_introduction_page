@@ -25,20 +25,42 @@
     </v-card-actions>
   </div>
 
-  <div class="text-xs-right">
+  <div class="text-xs-left">
     <v-btn fab dark color="teal" to="/notice">
       <v-icon dark class="backBtn">list</v-icon>
     </v-btn>
-
-    <div>
-        <v-btn to="./:id/edit" fab dark color="cyan">
+    <!-- <v-btn to="./:id/edit" fab dark color="cyan">
         <v-icon dark>edit</v-icon>
+    </v-btn> -->
+    <!-- <v-dialog v-model="dialog" persistent max-width="600px">
+        <v-btn to="./:id/edit" fab dark color="cyan">
+            <v-icon dark>edit</v-icon>
         </v-btn>
-    </div>
-    
-    <v-btn fab dark color="red">
-      <v-icon dark @click.stop="deleteItem(page.pid)">delete</v-icon>
-    </v-btn>   
+        <v-card>
+            <v-card-title>
+                <span class="headline">비밀번호를 입력하세요</span>
+            </v-card-title>
+            <v-card-text>
+                <v-container grid-list-md>
+                    <v-layout wrap>    
+                        <v-flex xs12 >
+                            <v-text-field label="Password*" type="password" required  id="password" name="password" minlength="3"></v-text-field>
+                        </v-flex>                             
+                    </v-layout>
+                </v-container>
+                <small>   *   3자 이상 입력하세요  </small>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" flat @click="checkPassword"  >제출</v-btn>
+                <v-btn color="blue darken-1" flat @click="dialog = false"  >취소</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog> -->
+
+    <!-- <v-btn fab dark color="red">
+      <v-icon dark @click.stop="deleteNotice(page.id)">delete</v-icon>
+    </v-btn>    -->
   </div>
   
 </v-container>  
@@ -47,6 +69,7 @@
 
 <script>
 import {Editor, Viewer} from './index.js';
+import db from '../../firebase/init.js';
 
 const eventListenr = [
     'onEditorLoad',
@@ -119,7 +142,7 @@ export default {
             editorPreviewStyle: 'vertical'
         };
     },
-    methods: Object.assign(eventListenr, {
+    methods: {
         methodInvoke(methodName) {
             this.message = this.$refs.tuiEditor.invoke(methodName);
         },
@@ -134,34 +157,35 @@ export default {
         },
         changePreviewStyle() {
             this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
-        }
-    }),
+        },
+        deleteNotice(id) {
+            db.collection('notices').doc(id).delete()
+                .then(() => {
+                    // this.notices = this.notices.filter((page) => {
+                    // return page.id != id
+                    // })
+                    this.$router.push({path: '/notice'});
+                })
+        },
+        nextList(){
+        },
+        prevList(){
+        },
 
-    deleteReview (id) {
-        db.collection('notices').doc(id).delete()
-        .then(() => {
-            this.notices = this.notices.filter((page) => {
-            return page.pid != id
-            })
-            alert('삭제되었습니다!')
-        })
-    },
-    nextList(){
-
-    },
-    prevList(){
-
-    },
-    checkPassword(){
-        var pw = document.getElementById("password").value;
-        var pwck = 12345
-        if (pw != pwck) {
-            alert('죄송합니다. 권한이 없습니다');
-        
-        } else {
-            this.$router.push('notice/:id/edit')
+        checkPassword(){
+            var pw = document.getElementById("password").value;
+            var pwck = 12345
+            if (pw != pwck) {
+                alert('죄송합니다. 권한이 없습니다');
+            
+            } else {
+                this.$router.push('notice/:id/edit')
         }}
+    }
 
+    
+    
+    
 };
 </script>
 
