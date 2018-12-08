@@ -6,8 +6,8 @@
   >
     <v-layout justify-center row wrap>
       <v-btn
-        v-for="link in links"
-        :key="link"
+        v-for="(link,index) in links"
+        :key="index"
         color="white"
         flat
         round

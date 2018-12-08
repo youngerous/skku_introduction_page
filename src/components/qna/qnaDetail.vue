@@ -9,18 +9,33 @@
     
     <v-flex xs12>
         <div class="qa-border">
-      <v-card class="pa-4" style="min-height: 500px;">
-        <h2 class="display-1">{{loadedData.title}}</h2>
-        <p class="my-2 text-xs-right subheading">작성자 : {{loadedData.writer}}</p>
+      <v-card class="pa-4" style="min-height: 100px;">
+        <h2 class="display-1">{{item.title}}</h2>
+        <p class="my-2 text-xs-right subheading">작성자 : {{item.writer}}</p>
         <v-flex xs12>
           <v-divider></v-divider>
         </v-flex>
         <v-flex class="xs12 text-xs-left pa-3">
-          <p class="qa-idcontent subheading">{{loadedData.content}}</p>
+          <p class="qa-idcontent subheading">{{item.content}}</p>
 
         </v-flex>
       </v-card>
        </div> 
+    </v-flex>
+
+    <v-flex class="my-3" xs12 v-if="item.comments" v-for="comment in item.comments" >
+      <div class="qa-border-comment">
+        <v-card class="pa-4" style="min-height: 100px;">
+          <p class="my-2 text-xs-right subheading">작성자 : {{comment.writer}}</p>
+          <v-flex xs12>
+            <v-divider></v-divider>
+          </v-flex>
+          <v-flex class="xs12 text-xs-left pa-3">
+            <p class="qa-idcontent subheading">{{comment.content}}</p>
+
+          </v-flex>
+        </v-card>
+      </div> 
     </v-flex>
     
     <v-flex xs12>
@@ -57,37 +72,38 @@ export default {
     item: {
       type: Object,
       default: null
-    }
+    },
+
   },
   components:{
     Editor
   },
   computed: {
-    loadedData () {
-      if (this.item) {
-        return this.item
-      } else {
-        console.log('직접왔어')
-        return db.collection('faqs').doc(this.id).get()
-        .then((doc) => {
-          console.log(doc.data())
-
-          return doc.data()
-        })
-      }
-    }
+    // loadedData () {
+    //   if (this.item) {
+    //     return this.item
+    //   } else {
+    //     console.log('직접왔어')
+    //     return db.collection('faqs').doc(this.id).get()
+    //     .then((doc) => {
+    //       console.log(doc.data())
+    //       let question = doc.data()
+    //       return question
+    //     })
+    //   }
+    // }
   },
-  // created () {
-  //   if (!this.item) {
-  //     console.log('직접왔어')
-  //     db.collection('faqs').doc(this.id).get()
-  //     .then((doc) => {
-  //       console.log(doc.data())
-  //       this.item = doc.data()
-  //     })
-  //   }
-  //   console.log(this.id)
-  // },
+  created () {
+    if (!this.item) {
+      console.log('직접왔어')
+      db.collection('faqs').doc(this.id).get()
+      .then((doc) => {
+        console.log(doc.data())
+        this.item = doc.data()
+      })
+    }
+    console.log(this.id)
+  },
   data () {
     return {
       commentContent: '',
@@ -97,18 +113,38 @@ export default {
   },
   methods:{
     addComment(){
-      console.log('addComment');            
+      console.log('addComment');          
+      let comment = {
+        writer: this.writer, 
+        content: this.commentContent, 
+        password: this.password,
+        createdAt: new Date(),
+        likes: 0
+      }
+      this.item.comments.push(comment)
+      db.collection('faqs').doc(this.id).update({
+        comments: this.item.comments
+      })
+      .then(() => {
+        this.writer = null
+        this.commentContent = null
+        this.password = null
+      });
     }            
   }
 }
 </script>
 
-<style>
+<style></style>
 .qa-border{
-border-left: 2px solid rgb(77, 126, 77);  
-border-right: 2.5px solid rgb(77, 126, 77); 
-border-top: 2.5px solid rgb(77, 126, 77);
-border-bottom: 2.5px solid rgb(77, 126, 77);  
+  border-left: 2px solid rgb(77, 126, 77);  
+  border-right: 2.5px solid rgb(77, 126, 77); 
+  border-top: 2.5px solid rgb(77, 126, 77);
+  border-bottom: 2.5px solid rgb(77, 126, 77);  
+}
+
+.qa-border-comment{
+  background-color: rgba(77, 126, 77, 0.2) !important;
 }
 
 .qa-btn-back{
