@@ -2,7 +2,7 @@
   <v-container>
     <v-layout wrap>
       <v-flex class="ma-3 text-xs-center" xs12>
-         <h2 class="notice-title" style=" font-family: 'Do Hyeon', sans-serif;">Q & A</h2> 
+         <h2 class="notice-title" style="  font-size: 30px; font-family: 'Do Hyeon', sans-serif;">Q & A</h2> 
       </v-flex>
     </v-layout>
     <v-layout justify-space-between>

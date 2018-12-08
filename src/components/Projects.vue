@@ -9,6 +9,7 @@
     <v-layout v-for="(project,index) in projects" ma-5 pa-1 :key="index">
       <div data-scroll>
         <v-layout wrap text-xs-center class="prj-projects" >
+
           <v-flex class="prj-infos" xs12 md7 pa-4 text-xs-left>
             <p class="prj-name">{{project.name}}</p>
             <p class="prj-text" v-html="project.text"></p>
@@ -18,12 +19,11 @@
             </a>
             <div v-else> 서비스 종료 </div>
           </v-flex>
+
           <v-flex class="prj-imgcontainer" xs12 md5 ma-0>
             <img class="prj-image" :src="require(`@/assets/prj-images/${project.src}`)" alt="이미지가 없다" draggable="false">
-            <div>
-          
-            </div>
           </v-flex>
+
         </v-layout>
       </div>
       
@@ -145,11 +145,9 @@ export default {
     font-size: 18px;
     font-weight: thin;
   }
-  .prj-creator{
-    font-size: 15px;
-    font-weight: thin;
-  }
-  .prj-url{
+  /* .prj-creato
+  } */
+prj-url{
     margin-bottom: 0px;
   }
   .prj-hook{

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="text-xs-center">
-      <h2 class="my-3 ntc-title">공지사항</h2>
+      <h2 class="my-3 ntc-title" style="  font-size: 30px; font-family: 'Do Hyeon', sans-serif;" >공지사항</h2>
     </div>
     <br>
     <br>
@@ -172,6 +172,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url(//fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean);
 .ntc-title{
   border-bottom: 2px solid #0c8040;
   display: inline-block;
