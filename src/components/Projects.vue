@@ -7,40 +7,66 @@
       </v-flex>
     </v-layout>
     <v-layout v-for="(project,index) in projects" pa-1 style="background-color: white;" :key="index">
-      <v-layout xs12 text-xs-center ma-5 pa-0 class="prj-projects" data-scroll>
-        <v-flex class="prj-infos" xs12 md7 ma-2 pa-2 text-xs-left>
-          <p class="prj-name">{{project.name}}</p>
-          <p class="prj-text">{{project.text}}</p>
-          <p class="prj-creator">만든이: {{project.creator}}</p>
-          <a class="prj-url" v-if="project.url" v-bind:href="project.url">
-            {{project.url}}
-          </a>
-          <div v-else> 서비스 종료 </div>
-        </v-flex>
-        <v-flex class="prj-imgcontainer" xs12 md5 ma-0>
-          <img class="prj-image" :src="require(`@/assets/prj-images/${project.src}`)" alt="이미지가 없다" draggable="false">
-          <div>
-        
-          </div>
-        </v-flex>
-      </v-layout>
+      <div data-scroll>
+        <v-layout xs12 text-xs-center ma-5 pa-0 class="prj-projects" >
+          <v-flex class="prj-infos" xs12 md7 ma-2 pa-2 text-xs-left>
+            <p class="prj-name">{{project.name}}</p>
+            <p class="prj-text">{{project.text}}</p>
+            <p class="prj-creator">만든이: {{project.creator}}</p>
+            <a class="prj-url" v-if="project.url" v-bind:href="project.url">
+              {{project.url}}
+            </a>
+            <div v-else style="{font-size: 100px}"> 서비스 종료 </div>
+          </v-flex>
+          <v-flex class="prj-imgcontainer" xs12 md5 ma-0>
+            <img class="prj-image" :src="require(`@/assets/prj-images/${project.src}`)" alt="이미지가 없다" draggable="false">
+            <div>
+          
+            </div>
+          </v-flex>
+        </v-layout>
+      </div>
+      
     </v-layout>
   </v-container>  
 </template>
 
 <script>
-import ScrollOut from "scroll-out"
+import ScrollOut from "scroll-out";
 
 export default {
-  mounted(){
-    ScrollOut({
-      threshold : 0.8
+  mounted() {
+    this.so = ScrollOut({
+      threshold : 0.6,
+      scope: this.$el
     });
   },
+  destroyed() {
+    this.so.teardown();
+  },
+  // mounted(){
+  //   ScrollOut({
+  //     
+  //   });
+  // },
 
   data(){
     return{
       projects:[
+        {
+          name: '스꾸터',
+          text: '이제 우리학교에도 공식 커뮤니티 있다! 성대생의 성대생을 위한 생대생에 의한 커뮤니티!',
+          creator: '유장홍, 전태훈',
+          url:"https://skkuter.com",
+         src: 'skkuter.png'
+        },
+        {
+          name: '스클럽(SKKLUB)',
+          text: '성균관대학교에 있는 동아리, 학회, 소모임의 집합체! 입학해서 뭘 할지 모르는 신입생들, 복학해서 새로운 친구 사귀고 싶은 복학생들 모두 여기 참고하세요!',
+          creator: '이동엽, 정유진, 황희조',
+          url:"https://sskklub.herokuapp.com/",
+          src: 'skklub.png'
+        },
         {
           name: '성균공약모음',
           text: '성균관대학교의 2014년부터 2017년까지의 총학생회, 단과대 학생회가 어떤 공약을 내걸었는지, 얼마나 시행했는지를 확인할 수 있습니다.(성대신문 기사 내용을 바탕으로 선정)', 
@@ -50,28 +76,14 @@ export default {
         },
         {
           name: '쁠모아',
-          text: '마트, 편의점 1+1, 2+1 행사를 한 눈에 볼 수 있도록 해주는 웹서비스(데이터 수집 자동화 종료)',
+          text: '이왕 먹을거 더 많이 먹자! 마트, 편의점 1+1, 2+1 행사를 한 눈에 볼 수 있도록 해주는 웹서비스(데이터 수집 자동화 종료)',
           creator: '권우정, 송예균, 이진호, 이동건',
           url:"https://plusmoa.herokuapp.com/",
           src: 'plusmoa.png'
         },
         {
-          name: '스꾸터',
-          text: '성대생의 성대생을 위한 생대생에 의한 커뮤니티!',
-          creator: '유장홍, 전태훈',
-          url:"https://skkuter.com",
-         src: 'skkuter.png'
-        },
-        {
-          name: '오늘의 레시피',
-          text: '집에 있는 재료로 해먹을 수 있는 요리 추천하는 요리 컨설팅 웹서비스!',
-          creator: '김희재, 박소현, 정광현',
-          url: false,
-          src: '3.jpg'
-        },
-        {
           name: '성균관대학교 스쿨버스 앱',
-          text: '성균관대학교 스쿨버스를 마냥 추위와 더위속에서 기다리지 않아도 된다!<br/> 정류장마다 버스가 언제 오는지, 지금 몇대의 버스가 어디에 있는지 알 수 있는 서비스!',
+          text: '성균관대학교 스쿨버스를 마냥 추위와 더위속에서 기다리지 않아도 된다! 정류장마다 버스가 언제 오는지, 지금 몇대의 버스가 어디에 있는지 알 수 있는 서비스!',
           creator: '이종원, 고윤서, 김정환, 김주상, 전태훈',
           url:'https://skkoolbus.com',
           src: 'skkool.png'
@@ -91,11 +103,18 @@ export default {
           src: 'skkumarketing.png'
         },
         {
-          name: '스클럽(SKKLUB)',
-          text: '성균관대학교에 있는 동아리, 학회, 소모임의 집합체! 입학해서 뭘 할지 모르는 신입생들, 복학해서 새로운 친구 사귀고 싶은 복학생들 모두 여기 참고하세요!',
-          creator: '이동엽, 정유진, 황희조',
-          url:"https://sskklub.herokuapp.com/",
-          src: 'skklub.png'
+          name: '오늘의 레시피',
+          text: '집에 있는 재료로 해먹을 수 있는 요리 추천하는 요리 컨설팅 웹서비스!',
+          creator: '김희재, 박소현, 정광현',
+          url: false,
+          src: 'todayrecipe.png'
+        },
+        {
+          name: '그 외의 수많은 프로젝트들..',
+          text: '우리 성대 사자들은 이곳에 다 소개하기엔 너무 많을 정도로 항상 새로운 아이디어와 개발열의로 가득합니다. 이제 당신의 아이디어를 우리와 실현시켜봐요!',
+          creator: '우리 그리고 여러분',
+          url: 'https://www.facebook.com/likelionskku/?fref=ts',
+          src: 'else2.png'
         },
       ]
     }
@@ -107,16 +126,15 @@ export default {
   p,pre { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
   [data-scroll] {
     transition: all 0.5s;
-
   }
   [data-scroll="in"] {
     opacity: 1;
-    /* -webkit-transform: translateX(0); */
+    -webkit-transform: translateX(0);
     transform: translateX(0)
   }
   [data-scroll="out"] {
     opacity: 0;
-    /* -webkit-transform: translateX(-200); */
+    -webkit-transform: translateX(-200px);
     transform: translateX(-200px)
   }
   .prj-name{
