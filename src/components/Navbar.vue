@@ -46,7 +46,7 @@
                     <router-link class="mp-menu__link" to="/gallery">
                         <span class="mp-menu__title">
                             <span class="mp-menu__first-word" data-hover="갤러리">
-                                겔러리
+                                갤러리
                             </span>
                             <span class="mp-menu__second-word" data-hover="Gallery">
                                 Gallery
@@ -95,7 +95,7 @@
                 </v-list>
                 </v-navigation-drawer>
 
-                <v-toolbar dark color="black" class="nav-main">
+                <v-toolbar dark color="#0c8040" class="nav-main">
                     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
                     <v-toolbar-title class="mx-0" style="user-select:none; cursor:pointer;" @click="$router.push('/')">
                         <span>SKKU 멋쟁이사자처럼</span>
