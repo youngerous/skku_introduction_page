@@ -2,7 +2,7 @@
      <v-container>
     <v-layout row wrap justify-center align-center>
       <v-flex xs12>
-        <v-text-field label="제목" placeholder="__id title" v-model="editorTitle"></v-text-field>
+        <v-text-field label="제목" placeholder="제목을 입력해주세요" v-model="editorTitle"></v-text-field>
       </v-flex>
       <v-flex xs12>
         <Editor v-model="editorContent" />
@@ -14,9 +14,9 @@
 
     <v-layout row wrap justify-end>
         <v-flex class="xs12 md4 text-xs-right">
-          <v-btn large outline color="teal" @click="editPost();
-          $router.go(-1)" :block="$vuetify.breakpoint.xsOnly" >수정하기</v-btn>
-          <v-btn large outline color="teal" @click="returnToPost(); $router.go(-1)" :block="$vuetify.breakpoint.xsOnly" >이전페이지로</v-btn>
+          <v-btn large outline color="teal" dark @click="editPost();
+          $router.go(-1)" :block="$vuetify.breakpoint.xsOnly" >글쓰기</v-btn>
+          <v-btn large outline color="teal" dark @click="returnToPost(); $router.go({path: '/notice'})" :block="$vuetify.breakpoint.xsOnly" >취소하기</v-btn>
         </v-flex>
     </v-layout>
   </v-container>
@@ -26,10 +26,9 @@
 <script>
 import {Viewer, Editor} from './index.js'
 import Vue from 'vue'
-import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
+import db from '../../firebase/init.js';
  
-Vue.use(Vuetify)
 Vue.use(VueRouter)
 
 const eventListenr = [
@@ -59,7 +58,7 @@ export default {
     },
     data() {
         return {
-            editorTitle: 'This is editorTitle',
+            editorTitle: '',
             editorContent: 'This is editorContent',
             message: '',
             methodNames: [
@@ -109,6 +108,32 @@ export default {
         editPost() {
             console.log(this.editorTitle)
             console.log(this.editorContent)
+           
+            if(this.editorTitle && this.editorContent){
+                let newPid = 404;
+                let ref = db.collection('notices').orderBy('created','desc').limit(1)
+                ref.get() 
+                .then((createdResult)=> {
+                    createdResult.forEach((doc) => {
+                        newPid = doc.data().pid+1
+                    })
+                    return newPid
+                }).then(p=>{
+                    const newPage = {
+                        title: this.editorTitle,
+                        editorContent: this.editorContent,
+                        created: new Date(),
+                        view: 0,
+                        pid: p
+                    }
+                    db.collection('notices').add(newPage)
+                    .then((result)=> {
+                        
+                })
+                })
+                
+                
+            }
         }, 
         returnToPost() {
             // router.push('/notice')

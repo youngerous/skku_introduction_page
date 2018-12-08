@@ -24,7 +24,7 @@ export default {
         },
         mode: {
             type: String,
-            default: 'markdown'
+            default: 'wysiwyg'
         },
         options: {
             type: Object,
@@ -109,6 +109,7 @@ export default {
         });
         this.editor.remove();
     },
+
     methods: {
         invoke(methodName, ...args) {
             let result = null;
