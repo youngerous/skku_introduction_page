@@ -2,40 +2,65 @@
 <v-container>
   <div class="nt-detail" xs12 md5>
     <div class="nt-detail-main">
-      <h1 class="nt-title">NOTICE TITLE</h1>
+      <h1 class="nt-title">{{page.title}}</h1>
       <hr>
-      <h5 class="nt-created">Notice created time</h5>
+      <h5 class="nt-created">{{page.created}}</h5>
       <hr>
       <p>
         <viewer
         class="nt-viewer"
-        :value="viewerText"
+        :value="page.content"
         />
       </p>
     </div>
     
-    <v-card-actions class="nt-next-prev-list">
-        <v-btn flat to="/notice">
+    <!-- <v-card-actions class="nt-next-prev-list">
+        <v-btn flat  @click.stop="prevList()" large outline color="teal" dark>
             <v-icon right dark>chevron_left</v-icon>
             Prev</v-btn>
         <v-spacer></v-spacer>
-        <v-btn flat to="/notice">
+        <v-btn flat @click.stop="nextList()"  large outline color="teal" dark>
             Next<v-icon right dark>chevron_right</v-icon>
         </v-btn>
-    </v-card-actions>
+    </v-card-actions> -->
   </div>
 
   <div class="text-xs-right">
     <v-btn fab dark color="teal" to="/notice">
       <v-icon dark class="backBtn">list</v-icon>
     </v-btn>
-    <v-btn to="./:id/edit" fab dark color="cyan">
-      <v-icon dark>edit</v-icon>
-    </v-btn>
-    
-    <v-btn fab dark color="red">
-      <v-icon dark @click="deleteItem(props.item)">delete</v-icon>
-    </v-btn>   
+    <!-- <v-btn to="./:id/edit" fab dark color="cyan">
+        <v-icon dark>edit</v-icon>
+    </v-btn> -->
+    <!-- <v-dialog v-model="dialog" persistent max-width="600px">
+        <v-btn to="./:id/edit" fab dark color="cyan">
+            <v-icon dark>edit</v-icon>
+        </v-btn>
+        <v-card>
+            <v-card-title>
+                <span class="headline">비밀번호를 입력하세요</span>
+            </v-card-title>
+            <v-card-text>
+                <v-container grid-list-md>
+                    <v-layout wrap>    
+                        <v-flex xs12 >
+                            <v-text-field label="Password*" type="password" required  id="password" name="password" minlength="3"></v-text-field>
+                        </v-flex>                             
+                    </v-layout>
+                </v-container>
+                <small>   *   3자 이상 입력하세요  </small>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" flat @click="checkPassword"  >제출</v-btn>
+                <v-btn color="blue darken-1" flat @click="dialog = false"  >취소</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog> -->
+
+    <!-- <v-btn fab dark color="red">
+      <v-icon dark @click.stop="deleteNotice(page.id)">delete</v-icon>
+    </v-btn>    -->
   </div>
   
 </v-container>  
@@ -44,6 +69,7 @@
 
 <script>
 import {Editor, Viewer} from './index.js';
+import db from '../../firebase/init.js';
 
 const eventListenr = [
     'onEditorLoad',
@@ -61,12 +87,17 @@ const eventListenr = [
 }, {});
 
 export default {
+    props: ['page'],
     components: {
         Editor,
         Viewer
     },
+    created() {
+        viewerText = page.content
+    },
     data() {
         return {
+            dialog: false,
             message: '',
             methodNames: [
                 'focus',
@@ -77,7 +108,7 @@ export default {
                 'moveCursorToEnd',
                 'reset'
             ],
-            viewerText: '# TOAST UI Markdown Viewer + Vue\n This is Viewer.',
+            viewerText: '',
             editorText: 'This is initialValue.',
             editorOptions: {
                 hideModeSwitch: false,
@@ -111,7 +142,7 @@ export default {
             editorPreviewStyle: 'vertical'
         };
     },
-    methods: Object.assign(eventListenr, {
+    methods: {
         methodInvoke(methodName) {
             this.message = this.$refs.tuiEditor.invoke(methodName);
         },
@@ -126,13 +157,35 @@ export default {
         },
         changePreviewStyle() {
             this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
-        }
-    }),
+        },
+        deleteNotice(id) {
+            db.collection('notices').doc(id).delete()
+                .then(() => {
+                    // this.notices = this.notices.filter((page) => {
+                    // return page.id != id
+                    // })
+                    this.$router.push({path: '/notice'});
+                })
+        },
+        // nextList(){
+        // },
+        // prevList(){
+        // },
+
+        // checkPassword(){
+        //     var pw = document.getElementById("password").value;
+        //     var pwck = 12345
+        //     if (pw != pwck) {
+        //         alert('죄송합니다. 권한이 없습니다');
+            
+        //     } else {
+        //         this.$router.push('notice/:id/edit')
+        // }}
+    }
+
     
-    // deleteItem (item) {
-    //   const index = this.notices.indexOf(item)
-    //   confirm('공지사항을 정말 삭제하시겠습니까?') && this.notices.splice(index, 1)
-    // },
+    
+    
 };
 </script>
 

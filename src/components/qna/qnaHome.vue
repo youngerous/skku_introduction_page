@@ -5,7 +5,6 @@
       <v-flex>
 
         <qna-faq/>
-        <!-- TODO: Container 고치기 -->
         <qna-container/>
 
       </v-flex>
@@ -25,3 +24,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .fq-btn-link{
+    color: gold;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+</style>

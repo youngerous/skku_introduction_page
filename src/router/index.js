@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Notice from '@/components/Notice'
 import NoticeDetail from '@/components/noticeViewEdit/NoticeDetail'
 import NoticeEdit from '@/components/noticeViewEdit/NoticeEdit'
+import NoticeNew from '@/components/noticeViewEdit/NoticeNew'
 import Projects from '@/components/Projects'
 import qnaHome from '@/components/qna/qnaHome'
 import qnaEditor from '@/components/qna/qnaEditor'
@@ -24,6 +25,11 @@ export default new Router({
       path: '/notice',
       name: 'Notice',
       component: Notice
+    },
+    {
+      path: '/notice/noticenew',
+      name: 'noticeNew',
+      component: NoticeNew
     },    
     {
       path: '/notice/:id',
@@ -47,8 +53,9 @@ export default new Router({
       component: qnaEditor
     },
     {
-      path: '/qna/qnadetail',
+      path: '/qna/:id',
       name: 'QnADetail',
+      props:true,
       component: qnaDetail
     },
     {

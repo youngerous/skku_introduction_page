@@ -15,16 +15,19 @@
           <!-- </v-fade-transition> -->
         </v-container>
       </v-content>
-
+      <Footer></Footer>
   </v-app>
 </template>
 
 <script>
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+
 export default {
   name: 'app',
   components: {
-    Navbar
+    Navbar,
+    Footer
   }
 }
 </script>
@@ -42,5 +45,9 @@ html { overflow-y: auto }
 .fade-enter,
 .fade-leave-active {
   opacity: 0
+}
+
+Footer{
+  /* position: fixed; */
 }
 </style>
