@@ -14,22 +14,23 @@
 
     <v-layout row wrap justify-end>
         <v-flex class="xs12 md4 text-xs-right">
-          <v-btn @click="editPost" large :block="$vuetify.breakpoint.xsOnly" class="primary">수정하기</v-btn>
-          <v-btn @click="editPost" large :block="$vuetify.breakpoint.xsOnly" class="primary">이전페이지로</v-btn>
-
+          <v-btn large outline color="teal" @click="editPost();
+          $router.go(-1)" :block="$vuetify.breakpoint.xsOnly" >수정하기</v-btn>
+          <v-btn large outline color="teal" @click="returnToPost(); $router.go(-1)" :block="$vuetify.breakpoint.xsOnly" >이전페이지로</v-btn>
         </v-flex>
-
     </v-layout>
   </v-container>
             
 </template>
 
 <script>
-import {Editor, Viewer} from './index.js'
+import {Viewer, Editor} from './index.js'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import VueRouter from 'vue-router'
  
 Vue.use(Vuetify)
+Vue.use(VueRouter)
 
 const eventListenr = [
     'onEditorLoad',
@@ -39,12 +40,17 @@ const eventListenr = [
     'onEditorStateChange'
 ].reduce((methods, methodName) => {
     methods[methodName] = function() {
-        // eslint-disable-next-line no-console
         console.log(`[editor] ${methodName}`);
     };
-
     return methods;
 }, {});
+
+// const router = new VueRouter({
+//   routes: [
+//     // dynamic segments start with a colon
+//     { path: '/notice', component: Notice }
+//   ]
+// })
 
 export default {
     components: {
@@ -53,6 +59,8 @@ export default {
     },
     data() {
         return {
+            editorTitle: 'This is editorTitle',
+            editorContent: 'This is editorContent',
             message: '',
             methodNames: [
                 'focus',
@@ -63,7 +71,6 @@ export default {
                 'moveCursorToEnd',
                 'reset'
             ],
-            editorText: 'This is initialValue.',
             editorOptions: {
                 hideModeSwitch: false,
                 toolbarItems: [
@@ -90,33 +97,23 @@ export default {
                 ]
             },
             editorHeight: '200px',
-            editorHtml: '',
-            editorMode: 'markdown',
+            editorMode: 'wysiwyg',
             editorVisible: true,
             editorPreviewStyle: 'vertical'
         };
     },
-    methods: Object.assign(eventListenr, {
-        methodInvoke(methodName) {
-            this.message = this.$refs.tuiEditor.invoke(methodName);
-        },
-        changeText() {
-            this.editorText += 'hihi';
-        },
-        changeHtml() {
-            this.editorHtml = '<h1>Hi</h1>';
-        },
-        changeMode() {
-            this.editorMode = this.editorMode === 'wysiwyg' ? 'markdown' : 'wysiwyg';
-        },
+    methods: {
         changePreviewStyle() {
             this.editorPreviewStyle = this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab';
         },
         editPost() {
-            console.log(this.editorText)
+            console.log(this.editorTitle)
+            console.log(this.editorContent)
+        }, 
+        returnToPost() {
+            // router.push('/notice')
         }
-    })
-    
+    }
 };
 </script>
 

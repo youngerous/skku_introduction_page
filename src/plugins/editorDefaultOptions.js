@@ -4,7 +4,7 @@ export default {
     useCommandShortcut: true,
     useDefaultHTMLSanitizer: true,
     usageStatistics: true,
-    hideModeSwitch: false,
+    hideModeSwitch: true,
     toolbarItems: [
         'heading',
         'bold',

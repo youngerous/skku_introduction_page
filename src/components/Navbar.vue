@@ -58,8 +58,8 @@
                 <li class="mp-menu__item">
                     <router-link class="mp-menu__link" to="/QNA">
                         <span class="mp-menu__title">
-                            <span class="mp-menu__first-word" data-hover="질의">
-                                질의
+                            <span class="mp-menu__first-word" data-hover="문의">
+                                문의
                             </span>
                             <span class="mp-menu__second-word" data-hover="Q&A">
                                 Q&A

@@ -1,62 +1,111 @@
 <template>
   <v-container>
-    <h2>공지사항</h2>
+    <div class="text-xs-center">
+      <h2 class="my-3 ntc-title">공지사항</h2>
+    </div>
     <br>
     <br>
     <br>
     <!-- 데이터테이블이랑 페이지네이션 결합 -->
     <div>
-      <v-data-table :headers="headers" :items="documents" :search="search" :pagination.sync="pagination" class="elevation-1">
+      <v-data-table :headers="headers" :items="notices" :search="search" :pagination.sync="pagination" class="elevation-1">
           <template slot="items" slot-scope="props">
-            <!-- onClick="onClick()" 이거를 template 태그에 넣어야 하나..?-->
-            <tr @click="$router.push({name: 'NoticeDetail', params: props.item.pid})">
-              <td>{{ props.item.pid }}</td>
-              <td>{{ props.item.created}}</td>
-              <td>{{ props.item.title }}</td>
-              <td>{{ props.item.view }} </td>
+            <tr @click="
+            updateViews(props.item);
+            $router.push({name: 'NoticeDetail', params: {id : props.item.pid, page: props.item}});">
+              <td class="pid">{{ props.item.pid }}</td>
+              <td class="created">{{ props.item.created}}</td>
+              <td class="title">{{ props.item.title }}</td>
+              <td class="view">{{ props.item.view }} </td>
             </tr>
           </template>
       </v-data-table>
     </div>
     <div class="text-xs-center pt-2">
       <v-pagination v-model="pagination.page" :length="pages" :total-visible="5" circle>
-        <!-- 버튼 모양 네모난 게 더 낫다면 circle은 지우겠음-->
+          <!-- 버튼 모양 네모난 게 더 낫다면 circle은 지우겠음 -->
       </v-pagination>
     </div>
 
-    <!-- 글쓰기 버튼, 누르면 alert  -->
-    <br>
-    <div>
+   
+ <!-- 글쓰기 팝업 다시 만들어보는중 -->
+ 
+    <!-- <div>
 
       <br>
-      <v-alert v-model="alert" dismissible type="success" :value="true" color="info" icon="priority_high" outline>
+      <v-alert v-model="alert" dismissible type="success" :value="true" color="info" icon="priority_high" outline >
         죄송합니다. 접근 권한이 없습니다
       </v-alert>
 
       <div class="text-xs-left">
-        <v-btn outline large color="teal" v-if="!alert" @click="alert = true">글쓰기</v-btn>
-      </div>
+        <v-btn outline large color="teal"   @click="showPopup()"  >글쓰기</v-btn>
+         </div> 
     </div>
+         -->
+    <!-- v-if="!alert" @click="alert = true" -->
+     
+<v-layout row justify-left>
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <v-btn slot="activator" large outline color="teal" dark>글쓰기</v-btn>
+      
+      <v-card>
+        <v-card-title>
+          <span class="headline">비밀번호를 입력하세요</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+                            
+              <v-flex xs12  >
+                <v-text-field label="Password*" type="password" required  id="password" name="password" minlength="3"></v-text-field>
+              </v-flex>                             
+              
+            </v-layout>
+          </v-container>
+          <small>   *   3자 이상 입력하세요  </small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click="checkPassword"  >제출</v-btn>
+          <v-btn color="blue darken-1" flat @click="dialog = false"  >취소</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
+
+  <!-- 글쓰기 팝업 다시 만들어보는중 -->
+
+        
+     
+   
   </v-container>
 </template>
 
 <script>
   import db from '../firebase/init.js';
+  import VueRouter from 'vue-router'
+  
+  const router = new VueRouter({
+
+  })
 
   export default {
     created() {
-      db.collection('notice').get()
+      db.collection('notices').get()
         .then(snapshot => {
           snapshot.forEach(doc => {
             let page = doc.data();
+            page.id = doc.id
             page.created = new Date(page.created.seconds*1000).toLocaleDateString()
-            this.documents.push(page);
+            this.notices.push(page);
           });
         })
     },
     data() {
       return {
-        documents: [],
+        
+        dialog: false,
+        notices: [],
         search: '',
         alert: false,
         pagination: {'sortBy': 'pid', 'descending': true},
@@ -83,41 +132,37 @@
             sortable: false
           },
         ]
-        // 제목을 클릭해서 들어갈 때마다 clicks가 올라가는 방법을 찾아야 함. 
+     
       }
     },
-    computed: {
-      pages() {
-        if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) return 0
-        return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
+       // 제목을 클릭해서 들어갈 때마다 clicks가 올라가는 방법을 찾았따! 
+
+     methods: {
+      updateViews : function(item){
+        item.view += 1
+       db.collection('notices').doc(item.id).update({
+         view: item.view
+       })
       }
-    },
-    methods: {
-      
+
+      // 비밀번호 체크 해서 넘어가는 함수
+
+      , checkPassword:function(){
+
+        var pw = document.getElementById("password").value;
+        var pwck = 12345
+        if (pw != pwck) {
+            alert('죄송합니다. 권한이 없습니다');
+            // return false;
+            
+            } else {
+              this.$router.push('notice/noticenew')
+            }
+                                
     }
 
-    //  비번체크 함수 어떻게 만들면 될까요
+   }
 
-    //  function tocheckpw1() {
-    //     var pw = document.getElementById("Pw").value;
-    //     var pwck = document.getElementById("PwCheck").value;
- 
-    //     if (pw != pwck) {
-    //         alert('죄송합니다. 권한이 없습니다');
-    //         return false;
-    //     }
-    // },
-
-    //  조회수 함수 어떻게 만들면 될까요
-
-    // clicks: {
-    //   onClick() {
-    //       var clicks = 0;
-
-    //       clicks += 1;
-    //       document.getElementById("clicks").innerHTML = clicks;
-    //       }
-    // }
 
 
   }
@@ -127,4 +172,29 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.ntc-title{
+  border-bottom: 2px solid #0c8040;
+  display: inline-block;
+}
+
+.pid{ 
+  width:15%; 
+  /* text-align: center; */
+ }
+.created{ 
+  width:20%; 
+  /* text-align: center;  */
+}
+.title{ 
+  width:50%; 
+  /* text-align: center;  */
+}
+.view{  
+  width:15%; 
+  /* text-align: center;  */
+}
+
+
+
+
 </style>
