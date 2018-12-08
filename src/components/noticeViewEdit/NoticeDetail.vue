@@ -14,7 +14,7 @@
       </p>
     </div>
     
-    <v-card-actions class="nt-next-prev-list">
+    <!-- <v-card-actions class="nt-next-prev-list">
         <v-btn flat  @click.stop="prevList()" large outline color="teal" dark>
             <v-icon right dark>chevron_left</v-icon>
             Prev</v-btn>
@@ -22,10 +22,10 @@
         <v-btn flat @click.stop="nextList()"  large outline color="teal" dark>
             Next<v-icon right dark>chevron_right</v-icon>
         </v-btn>
-    </v-card-actions>
+    </v-card-actions> -->
   </div>
 
-  <div class="text-xs-left">
+  <div class="text-xs-right">
     <v-btn fab dark color="teal" to="/notice">
       <v-icon dark class="backBtn">list</v-icon>
     </v-btn>
@@ -167,20 +167,20 @@ export default {
                     this.$router.push({path: '/notice'});
                 })
         },
-        nextList(){
-        },
-        prevList(){
-        },
+        // nextList(){
+        // },
+        // prevList(){
+        // },
 
-        checkPassword(){
-            var pw = document.getElementById("password").value;
-            var pwck = 12345
-            if (pw != pwck) {
-                alert('죄송합니다. 권한이 없습니다');
+        // checkPassword(){
+        //     var pw = document.getElementById("password").value;
+        //     var pwck = 12345
+        //     if (pw != pwck) {
+        //         alert('죄송합니다. 권한이 없습니다');
             
-            } else {
-                this.$router.push('notice/:id/edit')
-        }}
+        //     } else {
+        //         this.$router.push('notice/:id/edit')
+        // }}
     }
 
     
