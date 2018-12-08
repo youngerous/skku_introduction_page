@@ -16,7 +16,7 @@
         <v-flex class="xs12 md4 text-xs-right">
           <v-btn large outline color="teal" dark @click="editPost();
           $router.go(-1)" :block="$vuetify.breakpoint.xsOnly" >글쓰기</v-btn>
-          <v-btn large outline color="teal" dark @click="returnToPost(); $router.go({path: '/notice'})" :block="$vuetify.breakpoint.xsOnly" >취소하기</v-btn>
+          <v-btn large outline color="teal" dark @click="returnToPost(); $router.push({path: '/notice'})" :block="$vuetify.breakpoint.xsOnly" >취소하기</v-btn>
         </v-flex>
     </v-layout>
   </v-container>
@@ -121,7 +121,7 @@ export default {
                 }).then(p=>{
                     const newPage = {
                         title: this.editorTitle,
-                        editorContent: this.editorContent,
+                        content: this.editorContent,
                         created: new Date(),
                         view: 0,
                         pid: p

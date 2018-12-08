@@ -22,7 +22,7 @@
       </v-data-table>
     </div>
     <div class="text-xs-center pt-2">
-      <v-pagination v-model="pagination.page" :length="pages" :total-visible="5" circle>
+      <v-pagination v-model="page" :length="3" :total-visible="5" circle>
           <!-- 버튼 모양 네모난 게 더 낫다면 circle은 지우겠음 -->
       </v-pagination>
     </div>
