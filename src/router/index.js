@@ -47,8 +47,9 @@ export default new Router({
       component: qnaEditor
     },
     {
-      path: '/qna/qnadetail',
+      path: '/qna/:id',
       name: 'QnADetail',
+      props:true,
       component: qnaDetail
     },
     {
