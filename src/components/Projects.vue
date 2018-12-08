@@ -6,10 +6,10 @@
         여러가지 서비스들을 소개합니다
       </v-flex>
     </v-layout>
-    <v-layout v-for="(project,index) in projects" pa-1 style="background-color: white;" :key="index">
+    <v-layout v-for="(project,index) in projects" pa-1 :key="index">
       <div data-scroll>
-        <v-layout xs12 text-xs-center ma-5 pa-0 class="prj-projects" >
-          <v-flex class="prj-infos" xs12 md7 ma-2 pa-2 text-xs-left>
+        <v-layout wrap text-xs-center class="prj-projects" >
+          <v-flex class="prj-infos" xs12 md7 pa-4 text-xs-left>
             <p class="prj-name">{{project.name}}</p>
             <p class="prj-text">{{project.text}}</p>
             <p class="prj-creator">만든이: {{project.creator}}</p>

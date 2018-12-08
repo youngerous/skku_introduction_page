@@ -51,10 +51,10 @@
         <Editor v-model="commentContent" />
         <v-layout row wrap justify-end class="mt-4">
           <v-flex xs12 md4 class="pr-3 text-xs-right">
-            <v-text-field :rules="[() => !!name || 'This field is required']" color="#0c8040" v-model="writer" outline hint="실명/익명" persistent-hint label="작성자"></v-text-field>
+            <v-text-field color="#0c8040" v-model="writer" outline hint="실명/익명" persistent-hint label="작성자"></v-text-field>
           </v-flex>
           <v-flex xs12 md4 class="pr-3  text-xs-right">
-            <v-text-field :rules="[() => !!name || 'This field is required']" color="#0c8040" v-model="password" outline hint="수정/삭제시 필요" persistent-hint label="비밀번호"></v-text-field>
+            <v-text-field color="#0c8040" v-model="password" outline hint="수정/삭제시 필요" persistent-hint label="비밀번호"></v-text-field>
           </v-flex>
           <v-flex xs12 md4 class="text-xs-right">
             <v-btn large color="#0c8040" dark @click="addComment">답변 올리기</v-btn>
@@ -128,23 +128,26 @@ export default {
   },
   methods:{
     addComment(){
-      console.log('addComment');          
-      let comment = {
-        writer: this.writer, 
-        content: this.commentContent, 
-        password: this.password,
-        createdAt: new Date(),
-        likes: 0
+      if(this.writer && this.password){
+        let comment = {
+          writer: this.writer, 
+          content: this.commentContent, 
+          password: this.password,
+          createdAt: new Date(),
+          likes: 0
+        }
+        this.item.comments.push(comment)
+        db.collection('faqs').doc(this.id).update({
+          comments: this.item.comments
+        })
+        .then(() => {
+          this.writer = null
+          this.commentContent = null
+          this.password = null
+        });
+      }else{
+        alert('작성자 이름과 비밀번호를 모두 입력해야 합니다.');
       }
-      this.item.comments.push(comment)
-      db.collection('faqs').doc(this.id).update({
-        comments: this.item.comments
-      })
-      .then(() => {
-        this.writer = null
-        this.commentContent = null
-        this.password = null
-      });
     }            
   }
 }
