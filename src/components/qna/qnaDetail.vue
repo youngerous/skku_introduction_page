@@ -35,8 +35,11 @@
             <v-divider></v-divider>
           </v-flex>
           <v-flex class="xs12 text-xs-left pa-3">
-            <p class="qa-idcontent subheading">{{comment.content}}</p>
-
+            <!-- <p class="qa-idcontent subheading">{{comment.content}}</p> -->
+            <viewer
+            class="nt-viewer"
+            :value="comment.content"
+            />
           </v-flex>
         </v-card>
       </div> 
@@ -125,23 +128,26 @@ export default {
   },
   methods:{
     addComment(){
-      console.log('addComment');          
-      let comment = {
-        writer: this.writer, 
-        content: this.commentContent, 
-        password: this.password,
-        createdAt: new Date(),
-        likes: 0
+      if(this.writer && this.password){
+        let comment = {
+          writer: this.writer, 
+          content: this.commentContent, 
+          password: this.password,
+          createdAt: new Date(),
+          likes: 0
+        }
+        this.item.comments.push(comment)
+        db.collection('faqs').doc(this.id).update({
+          comments: this.item.comments
+        })
+        .then(() => {
+          this.writer = null
+          this.commentContent = null
+          this.password = null
+        });
+      }else{
+        alert('작성자 이름과 비밀번호를 모두 입력해야 합니다.');
       }
-      this.item.comments.push(comment)
-      db.collection('faqs').doc(this.id).update({
-        comments: this.item.comments
-      })
-      .then(() => {
-        this.writer = null
-        this.commentContent = null
-        this.password = null
-      });
     }            
   }
 }
@@ -167,9 +173,6 @@ export default {
   
 }
 
-.theme--light.v-card{
-  background-color: none;
-}
 
 .nt-viewer {
   background-color: white;
