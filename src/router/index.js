@@ -7,6 +7,7 @@ import NoticeEdit from '@/components/noticeViewEdit/NoticeEdit'
 import Projects from '@/components/Projects'
 import qnaHome from '@/components/qna/qnaHome'
 import qnaEditor from '@/components/qna/qnaEditor'
+import qnaDetail from '@/components/qna/qnaDetail'
 import Gallery from '@/components/Gallery'
 
 Vue.use(Router)
@@ -44,6 +45,11 @@ export default new Router({
       path: '/qna/newqna',
       name: 'QnANew',
       component: qnaEditor
+    },
+    {
+      path: '/qna/qnadetail',
+      name: 'QnADetail',
+      component: qnaDetail
     },
     {
       path: '/projects',

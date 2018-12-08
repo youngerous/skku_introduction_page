@@ -1,9 +1,10 @@
 <template>
     <div>
-        <nav class="mp-navigation">
-            <ul class="mp-menu">
+        <nav class="mp-navigation" v-if="$vuetify.breakpoint.mdAndUp">
+
+            <ul class="mp-menu" >
                 <li class="mp-menu__item">
-                    <router-link href="#" class="mp-menu__link" to="/">
+                    <router-link class="mp-menu__link" to="/">
                         <span class="mp-menu__title">
                             <span class="mp-menu__first-word" data-hover="홈페이지">
                                 홈페이지
@@ -16,7 +17,7 @@
                 </li>
 
                 <li class="mp-menu__item">
-                    <router-link href="#" class="mp-menu__link" to="/notice">
+                    <router-link class="mp-menu__link" to="/notice">
                         <span class="mp-menu__title">
                             <span class="mp-menu__first-word" data-hover="공지사항">
                                 공지사항
@@ -29,7 +30,7 @@
                 </li>
 
                 <li class="mp-menu__item">
-                    <router-link href="#" class="mp-menu__link" to="/projects">
+                    <router-link class="mp-menu__link" to="/projects">
                         <span class="mp-menu__title">
                             <span class="mp-menu__first-word" data-hover="프로젝트">
                                 프로젝트
@@ -42,7 +43,7 @@
                 </li>
 
                 <li class="mp-menu__item">
-                    <router-link href="#" class="mp-menu__link" to="/gallery">
+                    <router-link class="mp-menu__link" to="/gallery">
                         <span class="mp-menu__title">
                             <span class="mp-menu__first-word" data-hover="갤러리">
                                 갤러리
@@ -55,7 +56,7 @@
                 </li>
 
                 <li class="mp-menu__item">
-                    <router-link href="#" class="mp-menu__link" to="/QNA">
+                    <router-link class="mp-menu__link" to="/QNA">
                         <span class="mp-menu__title">
                             <span class="mp-menu__first-word" data-hover="질의">
                                 질의
@@ -67,7 +68,40 @@
                     </router-link>
                 </li>
             </ul>
+
+
         </nav>
+        <div  v-else>
+            <v-navigation-drawer
+                width="250"
+                v-model="drawer"
+                enable-resize-watcher
+                fixed
+                app
+                >
+                <v-list>
+                    <v-list-tile
+                    v-for="(item, i) in links"
+                    :key="i"
+                    :to="item.page"
+                    >
+                        <v-list-tile-action>
+                            <v-icon v-html="item.icon"></v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                            <v-list-tile-title v-text="item.text"></v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                </v-list>
+                </v-navigation-drawer>
+
+                <v-toolbar dark color="black" class="nav-main">
+                    <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+                    <v-toolbar-title class="mx-0" style="user-select:none; cursor:pointer;" @click="$router.push('/')">
+                        <span>SKKU 멋쟁이사자처럼</span>
+                    </v-toolbar-title>
+                </v-toolbar>
+        </div>
     </div>
 </template>
 
@@ -76,31 +110,41 @@ import router from "../router"
 export default {
     data() { 
         return { 
+            drawer: false,
+            items: [
+                {title: 'About',icon:'contact_support',link:'/'},
+                {title: '진행중설문',icon:'list',link:'/surveylist'},
+            ],
             links: [ 
                 { 
                     id: 0,
                     text: 'Home', 
-                    page: '/Home' 
+                    page: '/',
+                    icon: 'home'
                 },
                 { 
                     id: 1,
                     text: 'Notice', 
-                    page: '/Notice' 
+                    page: '/Notice',
+                    icon: 'notifications_active'
                 },
                 { 
                     id: 2,
                     text: 'Projects', 
-                    page: '/Projects' 
+                    page: '/Projects',
+                    icon: 'thumb_up'
                 },
                 { 
                     id: 3,
                     text: 'Gallery', 
-                    page: '/Gallery' 
+                    page: '/Gallery',
+                    icon: 'image'
                 },
                 { 
                     id: 4,
                     text: 'QNA', 
-                    page: '/QNA' 
+                    page: '/QNA',
+                    icon: 'contact_support'
                 }
                 
             ] 
@@ -110,7 +154,8 @@ export default {
 </script>
 
 <style>
-router-link {
+
+.mp-menu__link {
   outline: 0;
   text-decoration: none;
 }

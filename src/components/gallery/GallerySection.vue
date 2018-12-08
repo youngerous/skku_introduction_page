@@ -9,6 +9,7 @@
         <v-carousel-item
           v-for="(image,i) in occasion.images"
           :key="i"
+          
           :src="require(`@/assets/gallery/${image}`)"
         ></v-carousel-item>
       </v-carousel>

@@ -5,7 +5,6 @@
       <v-flex>
 
         <qna-faq/>
-        <v-btn :to="{name: 'QnANew'}" class="primary">질문하기</v-btn>
         <!-- TODO: Container 고치기 -->
         <qna-container/>
 

@@ -6,7 +6,7 @@
         여러가지 서비스들을 소개합니다
       </v-flex>
     </v-layout>
-    <v-layout v-for="(project,index) in projects" ma-5 pa-1 style="background-color: white;" :key="index">
+    <v-layout v-for="(project,index) in projects" pa-1 style="background-color: white;" :key="index">
       <v-layout xs12 text-xs-center ma-5 pa-0 class="prj-projects" data-scroll>
         <v-flex class="prj-infos" xs12 md7 ma-2 pa-2 text-xs-left>
           <p class="prj-name">{{project.name}}</p>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-// import ScrollOut from "scroll-out"
+import ScrollOut from "scroll-out"
 
 export default {
   mounted(){

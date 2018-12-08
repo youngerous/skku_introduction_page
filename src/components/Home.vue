@@ -1,18 +1,23 @@
 <template>
-    <div class="mp-main-section">
-        <div class="mp-video-container">
-            <video autoplay muted loop>
-                <source src="@/assets/coding.mp4" type="video/mp4">
-            </video>
-            <div class="mp-videoCover"></div>
-        </div>
-        <div class="mp-pageTitle">
-            <div class="mp-title_container">
-                <h1 class="mp-likelionSkku">LikeLion X SKKU</h1>
-                <vue-typed-js :strings="['Hack Your Life', 'Code your Ideas with your hand', 'Make the Ideas yours']" :backSpeed="40" :loop="true" :showCursor="false" :autoInsertCss="true">
-                    <!-- h2 class명 변경하면 안됨 -->
-                    <h2 class="typing"></h2>
-                </vue-typed-js>
+    <div>
+        <div class="mp-main-section">
+            <div class="mp-video-container">
+                <video autoplay muted loop>
+                    <source src="@/assets/coding.mp4" type="video/mp4">
+                </video>
+                <div class="mp-videoCover"></div>
+            </div>
+            <div class="mp-pageTitle">
+                <div class="mp-title_container">
+                    <h1 class="mp-likelionSkku">LikeLion<br v-if="$vuetify.breakpoint.xsOnly"> X SKKU</h1>
+                    <div style="min-height: 89px;" class="mx-3">
+                        <vue-typed-js :strings="['Hack Your Life', 'Code your Ideas with your hand', 'Make the Ideas yours']" :backSpeed="40" :loop="true" :showCursor="false" :autoInsertCss="true">
+                            <!-- h2 class명 변경하면 안됨 -->
+                            <h2 class="typing"></h2>
+                        </vue-typed-js>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -31,9 +36,15 @@ export default {
 
 
 <style>
+.mp-main-section {
+    width: 100vw;
+    height: 94vh;
+    background-color: black;
+    position: relative;
+}
 .mp-video-container {
     width: 100%;
-    height: 98vh;
+    height: 94vh;
     overflow: hidden;
     position: relative;
   }
@@ -50,6 +61,7 @@ video {
 }
 .mp-pageTitle {
     font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+
 }
 
 .mp-title_container {
@@ -73,12 +85,7 @@ video {
     font-size: 50px;
     color: white;
 }
-.mp-main-section {
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    position: relative;
-}
+
 .mp-videoCover {
     position: absolute;
     top: 0;
