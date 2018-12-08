@@ -10,8 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "ajv": "^6.6.1",
-    "firebase": "^5.7.0",
+    "@toast-ui/vue-editor": "^1.0.2",
+    "firebase": "^5.6.0",
     "scroll-out": "^2.2.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
