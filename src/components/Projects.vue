@@ -6,7 +6,7 @@
         여러가지 서비스들을 소개합니다
       </v-flex>
     </v-layout>
-    <v-layout v-for="(project,index) in projects" ma-5 pa-1 style="background-color: white;">
+    <v-layout v-for="(project,index) in projects" ma-5 pa-1 style="background-color: white;" :key="index">
       <v-layout xs12 text-xs-center ma-5 pa-0 class="prj-projects" data-scroll>
         <v-flex class="prj-infos" xs12 md7 ma-2 pa-2 text-xs-left>
           <p class="prj-name">{{project.name}}</p>
@@ -14,14 +14,15 @@
           <p class="prj-creator">만든이: {{project.creator}}</p>
           <p class="prj-url">{{project.url}}</p>
         </v-flex>
-        <v-flex class="prj-imgcontainer" xs12 md5 ma-0><img class="prj-image" src="@/assets/prj-images/prj-1.png" alt="이미지가 없다"></v-flex>
+        <v-flex class="prj-imgcontainer" xs12 md5 ma-0><img class="prj-image" :src="require(project.src)" alt="이미지가 없다"></v-flex>
       </v-layout>
     </v-layout>
   </v-container>  
 </template>
 
 <script>
-// import ScrollOut from "scroll-out"
+import ScrollOut from "scroll-out"
+import Image1 from '@/assets/logo.png'
 
 export default {
   mounted(){
@@ -37,25 +38,43 @@ export default {
           name: '성균공략모음',
           text: '성균관대학교의 2014년부터 2017년까지의 총학생회, 단과대 학생회가 어떤 공약을 내걸었는지, 얼마나 시행했는지를 확인할 수 있습니다.(성대신문 기사 내용을 바탕으로 선정)',
           creator: '이동건, 심시은, 김준엽, 이진호',
-          url:"http://skkupledgechaser.com/"
+          url:"http://skkupledgechaser.com/",
+          src: '@/assets/prj-images/skkubnb.png'
         },
         {
           name: 'YOU 학생',
           text: '성균관대 내 외국인들을 위한 커뮤니티.(운영시간, 학교 공지사항, 같은나라 학생들의 모임 등을 제공)서비스종료',
           creator: '김준엽, 허용회, 김경헌, 최재필',
-          url:"https://github.com/Yupjun/youhaksaeng"
+          url:"https://github.com/Yupjun/youhaksaeng",
+          src: '@/assets/prj-images/skkubnb.png'
         },
         {
           name: '쁠모아',
-          text: '마트, 편의점 1+1, 2+1 행사를 한 눈에 볼 수 있도록 해주는 웹서비스',
+          text: '마트, 편의점 1+1, 2+1 행사를 한 눈에 볼 수 있도록 해주는 웹서비스(데이터 수집 자동화 종료)',
           creator: '권우정, 송예균, 이진호, 이동건',
-          url:"https://plusmoa.herokuapp.com/"
+          url:"https://plusmoa.herokuapp.com/",
+          src: '@/assets/prj-images/skkubnb.png'
         },{
-            name: '',
-            text:'',
-            creator: '',
-            url: ""
+            name: 'SKKUBNB',
+            text:'성균관대 근처 룸쉐어 웹서비스.(계약한 방을 사정상 단기 혹은 장기 동안 비우게 되는 경우/단기간 정도만 빈방에 들어가고 싶은 경우 등)',
+            creator: '심시은, 장민서, 안윤하, 정여진',
+            url: "",
+            src: '@/assets/prj-images/skkubnb.png'
         },
+        {
+          name: '스꾸터',
+          text: '성대생의 성대생을 위한 생대생에 의한 커뮤니티!',
+          creator: '유장홍, 전태훈',
+          url:"https://skkuter.com",
+         src: '@/assets/prj-images/skkubnb.png'
+        },
+{
+          name: '오늘의 레시피',
+          text: '집에 있는 재료로 해먹을 수 있는 요리 추천하는 요리 컨설팅 웹서비스!',
+          creator: '김희재, 박소현, 정광현',
+          url:'서비스종료',
+          src: '@/assets/prj-images/skkubnb.png'
+        }        
       ]
     }
   }
@@ -100,7 +119,7 @@ export default {
   .prj-projects{
     background-color: white;
     border: 3px solid #0c8040;
-    /* height: 60vh; */
+    height: 60vh;
     /* position: relative; */
   }
   .prj-image{
