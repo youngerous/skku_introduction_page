@@ -86,7 +86,7 @@
                     :to="item.page"
                     >
                         <v-list-tile-action>
-                            <v-icon v-html="item.icon"></v-icon>
+                            <v-icon color="#0c8040" v-html="item.icon"></v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
                             <v-list-tile-title v-text="item.text"></v-list-tile-title>
@@ -95,7 +95,7 @@
                 </v-list>
                 </v-navigation-drawer>
 
-                <v-toolbar dark color="#0c8040" class="nav-main">
+                <v-toolbar fixed app dark color="#0c8040" class="nav-main">
                     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
                     <v-toolbar-title class="mx-0" style="user-select:none; cursor:pointer;" @click="$router.push('/')">
                         <span>SKKU 멋쟁이사자처럼</span>
