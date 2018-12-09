@@ -127,7 +127,7 @@ export default {
         {
           name: '오늘의 레시피',
           text: '집에 있는 재료로 해먹을 수 있는 요리 추천하는 요리 컨설팅 웹서비스!',
-          creator: '김희재, 박소현, 정광현',
+          creator: '김희재, 조상연, 정광현, 심시은, 김준엽',
           url: false,
           src: 'todayrecipe.png'
         },
