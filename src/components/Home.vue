@@ -9,7 +9,7 @@
             </div>
             <div class="mp-pageTitle">
                 <div class="mp-title_container">
-                    <h1 class="mp-likelionSkku">LikeLion<br v-if="$vuetify.breakpoint.xsOnly"> X SKKU</h1>
+                    <h1 class="mp-likelionSkku">LIKELION<br v-if="$vuetify.breakpoint.xsOnly"> X SKKU</h1>
                     <div style="min-height: 89px;" class="mx-3">
                         <vue-typed-js :strings="['Hack Your Life', 'Code your Ideas with your hand', 'Make the Ideas yours']" :backSpeed="40" :loop="true" :showCursor="false" :autoInsertCss="true">
                             <!-- h2 class명 변경하면 안됨 -->
