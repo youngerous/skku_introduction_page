@@ -35,12 +35,12 @@
         >
           <template slot="items" slot-scope="props">
             <tr @click="clickedRow(props.item)" >
-              <td class="text-xs-center">{{ props.item.writer }}</td>
+              <td v-if="$vuetify.breakpoint.mdAndUp" class="text-xs-center">{{ props.item.writer }}</td>
               <td class="text-xs-center">{{ props.item.title }}</td>
-              <td class="text-xs-center">{{ new Date(props.item.createdAt.seconds*1000).toLocaleString() }}</td>
+              <td v-if="$vuetify.breakpoint.mdAndUp" class="text-xs-center">{{ new Date(props.item.createdAt.seconds*1000).toLocaleString() }}</td>
               <td class="text-xs-center">{{ props.item.comments.length }}</td>
-              <td class="text-xs-center">{{ props.item.likes }}</td>
-              <td class="text-xs-center">{{ props.item.views }}</td>
+              <td v-if="$vuetify.breakpoint.mdAndUp" class="text-xs-center">{{ props.item.likes }}</td>
+              <td v-if="$vuetify.breakpoint.mdAndUp" class="text-xs-center">{{ props.item.views }}</td>
             </tr>
           </template>
         </v-data-table>
@@ -56,15 +56,15 @@ export default {
   data() {
     return {
       search: "",
-      headers: [
-        { text: "글쓴이", align: "center", value: "writer",sortable: true },
-        { text: "제목", align: "center", value: "title" ,sortable: false},
-        { text: "등록일", align: "center", value: "createdAt", sortable: true },
-        { text: "댓글수", align: "center", value: "comments", sortable: true },
-        { text: "좋아요", align: "center", value: "likes" ,sortable: true},
-        { text: "조회수", align: "center", value: "views" ,sortable: true},
-        // { text: "Actions", align: "center", value: "name", sortable: false }
-      ],
+      // headers: [
+      //   { text: "글쓴이", align: "center", value: "writer",sortable: true },
+      //   { text: "제목", align: "center", value: "title" ,sortable: false},
+      //   { text: "등록일", align: "center", value: "createdAt", sortable: true },
+      //   { text: "댓글수", align: "center", value: "comments", sortable: true },
+      //   { text: "좋아요", align: "center", value: "likes" ,sortable: true},
+      //   { text: "조회수", align: "center", value: "views" ,sortable: true},
+      //   // { text: "Actions", align: "center", value: "name", sortable: false }
+      // ],
       faqs: [],
       // pagination: {descending: true},
       loading: true,
@@ -75,6 +75,24 @@ export default {
       return this.faqs.filter(faq => {
         return faq.title.toLowerCase().indexOf(this.search.toLowerCase() != -1)
       })
+    },
+    headers () {
+      if (this.$vuetify.breakpoint.smAndDown) {
+        return [
+          { text: "제목", align: "center", value: "title" ,sortable: false},
+          { text: "댓글수", align: "center", value: "comments", sortable: true },
+        ]
+      } else {
+        return [
+          { text: "글쓴이", align: "center", value: "writer",sortable: true },
+          { text: "제목", align: "center", value: "title" ,sortable: false},
+          { text: "등록일", align: "center", value: "createdAt", sortable: true },
+          { text: "댓글수", align: "center", value: "comments", sortable: true },
+          { text: "좋아요", align: "center", value: "likes" ,sortable: true},
+          { text: "조회수", align: "center", value: "views" ,sortable: true},
+          // { text: "Actions", align: "center", value: "name", sortable: false }
+        ]
+      }
     }
   },
 
