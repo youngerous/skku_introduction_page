@@ -12,10 +12,10 @@
             updateViews(props.item);
             props.item.pid += ''
             $router.push({name: 'NoticeDetail', params: {id : props.item.pid, page: props.item}});">
-              <td class="pid">{{ props.item.pid }}</td>
-              <td class="created">{{ props.item.created}}</td>
+              <td v-if="$vuetify.breakpoint.mdAndUp" class="pid">{{ props.item.pid }}</td>
+              <td v-if="$vuetify.breakpoint.mdAndUp" class="created">{{ props.item.created}}</td>
               <td class="title">{{ props.item.title }}</td>
-              <td class="view">{{ props.item.view }} </td>
+              <td v-if="$vuetify.breakpoint.mdAndUp" class="view">{{ props.item.view }} </td>
             </tr>
           </template>
       </v-data-table>
@@ -98,28 +98,28 @@
         alert: false,
         pagination: {'sortBy': 'pid', 'descending': true},
         selected: [],
-        headers: [{
-            text: 'No.',
-            value: 'pid',
-            align: 'left',
-            sortable: false
-          },
-          {
-            text: '등록일',
-            value: 'created',
-            sortable: false
-          },
-          {
-            text: '제목',
-            value: 'title',
-            sortable: false
-          },
-          {
-            text: '조회수',
-            value: 'clicks',
-            sortable: false
-          },
-        ]
+        // headers: [{
+        //     text: 'No.',
+        //     value: 'pid',
+        //     align: 'left',
+        //     sortable: false
+        //   },
+        //   {
+        //     text: '등록일',
+        //     value: 'created',
+        //     sortable: false
+        //   },
+        //   {
+        //     text: '제목',
+        //     value: 'title',
+        //     sortable: false
+        //   },
+        //   {
+        //     text: '조회수',
+        //     value: 'clicks',
+        //     sortable: false
+        //   },
+        // ]
      
       }
     },
@@ -148,6 +148,42 @@
                                 
     }
 
+   },
+   computed: {
+      headers () {
+        if (this.$vuetify.breakpoint.smAndDown) {
+          return [
+            {
+              text: '제목',
+              value: 'title',
+              sortable: false
+            },
+          ]
+        } else {
+          return [{
+            text: 'No.',
+            value: 'pid',
+            align: 'left',
+            sortable: false
+          },
+          {
+            text: '등록일',
+            value: 'created',
+            sortable: false
+          },
+          {
+            text: '제목',
+            value: 'title',
+            sortable: false
+          },
+          {
+            text: '조회수',
+            value: 'clicks',
+            sortable: false
+          },
+        ]
+        }
+      }
    }
 
 

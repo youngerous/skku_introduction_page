@@ -1,5 +1,5 @@
 <template>
-  <v-layout>
+  <v-container class="ma-0 pa-0">
     <v-layout wrap>
       <v-flex class="ma-3 text-xs-center" xs12>
          <h2 class="notice-title" style="  font-size: 30px; font-family: 'Do Hyeon', sans-serif;">Q & A</h2> 
@@ -46,7 +46,7 @@
         </v-data-table>
       </v-flex>
     </v-layout>
-  </v-layout>
+  </v-container>
 </template>
 
 <script>
