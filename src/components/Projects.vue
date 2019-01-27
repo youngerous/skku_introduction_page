@@ -100,7 +100,7 @@ export default {
           name: '성균관대학교 스쿨버스 앱',
           text: '성균관대학교 스쿨버스를 마냥 추위와 더위속에서 기다리지 않아도 된다! <br>정류장마다 버스가 언제 오는지, 지금 몇대의 버스가 어디에 있는지 알 수 있는 서비스!',
           creator: '이종원, 고윤서, 김정환, 김주상, 전태훈',
-          url:'https://skkoolbus.com',
+          url:'http://skkoolbus.com',
           src: 'skkool.png'
         },
         {
@@ -130,6 +130,34 @@ export default {
           creator: '김희재, 조상연, 정광현, 심시은, 김준엽',
           url: false,
           src: 'todayrecipe.png'
+        },
+        {
+          name: '토스트(tost)',
+          text: '방학 때 토익, 토플 수업이나 들어볼까 생각하며 이 사이트 저 사이트 돌아다녔던 경험 다들 한 번씩 있으시죠?<br>토스트는 번거롭기만한 나에게 딱 맞는 어학강의 찾기를 한 곳에서 해결할 수 있도록 도와주는 서비스입니다.',
+          creator: '조성국, 이종원, 정유진, 박찬준, 이지연',
+          url: false,
+          src: 'default.jpg'
+        },
+        {
+          name: 'See-real',
+          text: '하이퍼렛져 블록체인 기반으로 투명하고 신뢰도 높은 시청 데이터를 수집하고 이를 가공하여 대시보드 형태로 보여주는 솔루션입니다.  ',
+          creator: '조상연, 이동건, 전태훈',
+          url: "https://github.com/csy1204/see-real-dapp-project",
+          src: 'seereal.png'
+        },
+        {
+          name: 'KTX 입석을 위한 빈좌석 찾기 서비스',
+          text: '코레일의 예약 가능 데이터를 기반으로 열차 내 빈좌석을 알려주는 서비스입니다.<br>경부선 KTX 기준으로 각 객실 내 각 좌석이 어느 역까지 비어있는지 시각적으로 확인이 가능합니다.',
+          creator: '조상연, 이동건, 심시은',
+          url: false,
+          src: 'ktx.png'
+        },
+        {
+          name: 'Indie Film Genie',
+          text: '웹 크롤링과 다중 회귀부넉을 이용한 영화흥행 예측!',
+          creator: '이종원, 조상연, 고윤서, 전태훈, 이동건',
+          url: false,
+          src: 'indie.png'
         },
         {
           name: '그 외의 수많은 프로젝트들..',
@@ -185,6 +213,7 @@ prj-url{
     background-color: white;
     border: 3px solid #0c8040;
     min-height: 60vh;
+    max-height: 80vh;
     /* position: relative; */
   }
   .prj-image{

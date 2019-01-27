@@ -5,6 +5,7 @@
     color="#0c8040"
     height="auto"
     fixed
+    app
     v-if="$vuetify.breakpoint.mdAndUp"
   >
     <v-layout justify-center row wrap>

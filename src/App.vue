@@ -47,7 +47,4 @@ html { overflow-y: auto }
   opacity: 0
 }
 
-Footer{
-  /* position: fixed; */
-}
 </style>
