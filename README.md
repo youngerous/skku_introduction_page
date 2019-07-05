@@ -6,3 +6,6 @@
 3. Q&A: qa-
 4. 갤러리: gr-
 5. 프로젝트: prj-
+
+## Deploy URL
+https://skku.likelion.org/
